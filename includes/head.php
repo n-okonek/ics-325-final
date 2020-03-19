@@ -1,36 +1,7 @@
 <?php
-  class PageHead  {
-    public $content;
+  class Head  {
+    //this class builds everything from <html> to </head> tags, also includes styles and scripts that need to be loaded in head.
     public $siteName = "Wanderlust Outpost";
-    public $nav = [
-      "Home" => [
-        "url" =>"index.php",
-        "title" => "Buy the ticket, take the ride",
-        "keywords" => ""
-      ],
-      "Blog" => [
-        "url" => "blog.php",
-        "title" => "Buy the ticket, take the ride",
-        "keywords" => ""
-      ],
-      "Expeditions" => [
-        "url" => "expeditions.php", 
-        "title" => "Buy the ticket, take the ride",
-        "keywords" => ""
-      ],
-      "Login" => [
-        "url" => "login.php",
-        "title" => "Buy the ticket, take the ride",
-        "keywords" => ""
-      ],
-    ];
-
-    public $nav2 = [ // will need to be reworked for 
-      "Home" => "index.php", 
-      "Blog" => "blog.php", 
-      "Expeditions" => "expeditions.php", 
-      "Login" => "login.php"
-    ];
 
     public function __set($name, $value){
       $this->$name = $value;
@@ -43,31 +14,36 @@
       echo "<!--[if IE 8]>         <html class='no-js lt-ie9'> <![endif]-->";
       echo "<!--[if gt IE 8]><!--> <html class='no-js'> <!--<![endif]-->";
       echo "<head>";
-      DisplayTitle();
-      DisplayKeywords();
-      DisplayMeta();
-      DisplayStyles();
+      $this -> displayTitle();
+      $this -> displayKeywords();
+      $this -> displayMeta();
+      $this -> displayStyles();
+      $this -> addScripts();
       echo "</head>";
     }
 
-    public function DisplayTitle(){
+    public function displayTitle(){
       echo "<title>".$this->siteName." | ".$this->pageName."</title>";
     }
 
-    public function DisplayKeywords(){
+    public function displayKeywords(){
       echo "<meta name='keywords' content='".$this->keywords."' />";
     }
 
-    public function DisplayMeta(){
+    public function displayMeta(){
       echo "<meta charset='utf-8'>";
       echo "<meta http-equiv='X-UA-Compatible' content='IE=edge'>";
       echo "<meta name='description' content='".$this->description."' >";
       echo "<meta name='viewport' content='width=device-width, initial-scale=1'>";
     }
 
-    public function DisplayStyles(){
+    public function displayStyles(){
       //something needs to be replaced with function for inserting multiple styles
       echo "<link href='".something."' rel='stylesheet' />";
+    }
+
+    public function addScripts(){
+      //build script generator;
     }
   }
 ?>
