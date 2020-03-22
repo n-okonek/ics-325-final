@@ -7,5 +7,7 @@
 <p>some content here<p>
 <p>Nick added content</p>
 <p> Mike was here sucka</P>
+<p> Meygan added something</p>
+
 
 <?php require 'includes/footer.php'; ?>
