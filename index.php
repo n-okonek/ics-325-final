@@ -14,19 +14,19 @@
   <div class="top-review">
     <div class="review-content">
       <h3><?php echo "{Review Headline}"?></h3>
-      <p><?php echo "Nick added content"?></p>
+      <p><?php echo "{Review Content}"?></p>
     </div>
   </div>
   <div class="top-review">
     <div class="review-content">
       <h3><?php echo "{Review Headline}"?></h3>
-      <p> <?php echo "Mike was here sucka"?></p>
+      <p> <?php echo "{Review Content}"?></p>
     </div>
   </div>
   <div class="top-review">
     <div class="review-content">
       <h3><?php echo "{Review headline}"?></h3>
-      <p> <?php echo "Meygan added something"?></p>
+      <p> <?php echo "{Review Content}"?></p>
     </div>
   </div>
 </div>
