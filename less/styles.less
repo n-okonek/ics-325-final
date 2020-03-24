@@ -14,7 +14,15 @@
 }
 
 /* Import mobile styles */
-@media (max-width: @sizes[tablet]){
-  @import "mm.less"; // mobile menu
-  @import "mobile.less";
+
+@import "mobile.less";
+/*mobile menu for widths less than 768px */
+@media (max-width: @sizes[mobile2]){
+  @import "mm.less";
+}
+
+/* Import moble and tablet styles */
+@media (min-width: @sizes[tablet1]) and (max-width: @sizes[tablet2]){
+  @import "menu.less";
+  @import "tablet.less";
 }

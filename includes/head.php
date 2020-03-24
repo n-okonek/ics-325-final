@@ -23,4 +23,6 @@
   <!-- import less js library -->
   <script src="//cdnjs.cloudflare.com/ajax/libs/less.js/3.9.0/less.min.js" crossorigin="anonymous"></script>
   <!-- import site scripts -->
+  
+  <!-- Set Less JS Options -->
 </head>
