@@ -1,8 +1,59 @@
+body{
+  background: @white url(@home-background) no-repeat -850px top / auto 70vh;
+}
+
 header {
   background: @black;
+  min-height: 50px;
 }
 
 h1{
   float: left;
   font-size: 1.3rem;
+  width: max-content;
+}
+
+h2{
+  text-align: center;
+  font-size: 1.4rem;
+  padding-right: 0px;
+  margin: 0px auto;
+  display: inline-block;
+  width: 100%;
+}
+
+.top-reviews{
+  position: fixed;
+  height: 50vh;
+  border: 2px solid @black;
+  border-radius: 5px;
+  box-shadow: 2px 3px @black-trans;
+  padding: 0px;
+  margin: 0px auto;
+  background: @white-trans;
+  right: 0px;
+  left: 0px;
+  bottom: 15px;
+  width: 90%;
+
+  .top-review{
+    width: 30%;
+    margin: 10px 0px;
+    position: relative;
+    float: left;
+    height: 95%;
+
+    &:nth-child(1){
+      margin-left: 2%;
+    }
+
+    &:nth-child(2){
+      margin-left: 3%;
+      margin-right: 3%;
+    }
+
+    &:nth-child(3){
+      margin-right: 2%;
+    }
+  }
 }
