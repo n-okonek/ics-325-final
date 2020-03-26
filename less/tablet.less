@@ -1,16 +1,24 @@
 body{
-  background: @white url(@home-background) no-repeat -850px top / auto 70vh;
+  background: /*url(@home-background) no-repeat -850px top / auto 70vh,*/
+              #fff;
+}
+
+.bg-img{
+  height: 70vh;
+  left: -1225px;
 }
 
 header {
   background: @black;
   min-height: 50px;
+  z-index: 999;
 }
 
 h1{
   float: left;
   font-size: 1.3rem;
   width: max-content;
+  margin-block-start: .67em;
 }
 
 h2{
@@ -22,9 +30,19 @@ h2{
   width: 100%;
 }
 
+.main-content{
+  border: 2px solid @black;
+  border-radius: 5px;
+  box-shadow: 2px 3px @black-trans;
+  background: @white-trans;
+  min-height: 50vh;
+  margin: 20px;
+  padding: 20px;
+}
+
 .top-reviews{
   position: fixed;
-  height: 50vh;
+  height: 30%;
   border: 2px solid @black;
   border-radius: 5px;
   box-shadow: 2px 3px @black-trans;
@@ -42,6 +60,8 @@ h2{
     position: relative;
     float: left;
     height: 95%;
+    border: none;
+    background: @blue-trans;
 
     &:nth-child(1){
       margin-left: 2%;

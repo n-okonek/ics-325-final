@@ -2,8 +2,6 @@
 @import "compless/all.less";
 @import "vars.less";
 
-
-
 /* Global Styles */
 @font-face {
   font-family: 'dark_net';
@@ -16,6 +14,7 @@
 /* Import mobile styles */
 
 @import "mobile.less";
+@import "map-mobile.less";
 /*mobile menu for widths less than 768px */
 @media (max-width: @sizes[mobile2]){
   @import "mm.less";
@@ -25,4 +24,10 @@
 @media (min-width: @sizes[tablet1]){
   @import "menu.less";
   @import "tablet.less";
+}
+
+/* Import desktop styles */
+@media (min-width: @sizes[desktop]){
+  @import "desktop.less";
+  @import "map.less";
 }

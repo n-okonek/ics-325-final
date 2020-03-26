@@ -8,15 +8,28 @@ a{
   width: max-content;
   bottom: -20px;
   position: relative;
+
+  @media (min-width: @sizes[desktop]){
+    bottom: -33px;
+  }
   
   li{
     list-style-type: none;
     display: inline-block;
-    padding-right: 15px;
-    font-size: 0.8rem;
+    padding-right: 10px;
+    font-size: 0.78rem;
+    color: @white;
 
+    @media (min-width: @sizes[desktop]){
+      font-size: 1rem;
+    }
     a{
       color: @white;
+
+      &:hover{
+        color: @lightblue;
+        text-shadow: 3px;
+      }
     }
   }
 }

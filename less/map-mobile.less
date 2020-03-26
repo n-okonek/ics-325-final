@@ -1,0 +1,55 @@
+@font-stack-safe: Helvetica, sans-serif;
+@font-stack-main: "Roboto", @font-stack-safe;
+@font-stack-highlight: "Roboto Condensed", @font-stack-safe;
+
+@color-background: rgb(26, 26, 26);
+@color-highlight: rgb(175, 225, 250);
+@color-highlight-light: lighten(@color-highlight, 10%);
+@color-highlight-dark: darken(@color-highlight, 10%);
+
+@color-foreground: rgb(229,229,229);
+  
+@map-dot-size: 40px;
+
+@transition-time: 0.25s;
+
+.map{
+  margin: 20px auto 0px;
+  width: 100%;
+  background: @color-background;
+  height: 100%;
+  padding-bottom: 20px;
+  overflow: auto;
+}
+
+.distribution-map{
+  margin: 0px 10px;
+  width: 90%;
+
+  @media (min-width: @sizes[tablet1]){
+    margin: 0px auto;
+    text-align: center;
+  }
+  
+  &>img{
+    display: none;
+  }
+
+  .map-point{
+    width: 100%;
+    margin: 0px auto 10px;
+    border: @map-dot-size/8 solid @color-highlight-dark;
+    .border-radius(@map-dot-size/2);
+    margin: 5px;
+    background: @color-background;
+    color: @color-foreground;
+
+    @media (min-width: @sizes[tablet1]){
+      width: 40%;
+    }
+  }
+}
+
+footer{ 
+  display: none;
+}

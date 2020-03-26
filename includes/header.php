@@ -6,20 +6,20 @@
 	      <span>
 		      <ul class="sub-menu">
             <li>
-              <a href="#about" title="about">Link 1</a>
+              <a href="./index.php" title="Home">Home</a>
             </li>
             <li>
-              <a href="#skills" title="skills">Link 2</a>
+              <a href="./blog.php" title="Blog">Blog</a>
             </li>
             <li>
-              <a href="#jobs" title="jobs">Link 3</a>
+              <a href="./expeditions.php" title="Expeditions">Expeditions</a>
             </li>
             <li>
-              <a href="#contact" title="contact">Link 4</a>
+              <a href="./login.php" title="Log In">Log In</a>
             </li>
           </ul>
         </span>
       <span class="cls"></span>
     </div> 
   <!-- end mobile menu -->
-</header
+</header>
