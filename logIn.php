@@ -10,7 +10,7 @@
     <h2><?php echo $PageTitle ?></h2>
   </div>
 
-  <div class="logInBanner">
+  <div class="logInHeader">
     <h2>LOGIN TO YOUR ACCOUNT</h2>
   </div>
 
