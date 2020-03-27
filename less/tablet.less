@@ -1,6 +1,6 @@
 body{
   background: /*url(@home-background) no-repeat -850px top / auto 70vh,*/
-              #fff;
+              @color-background;
 }
 
 .bg-img{
@@ -9,9 +9,13 @@ body{
 }
 
 header {
-  background: @black;
+  background: @color-background;
   min-height: 50px;
   z-index: 999;
+
+  .open{
+    bottom: -33px;
+  }
 }
 
 h1{
@@ -21,10 +25,14 @@ h1{
   margin-block-start: .67em;
 }
 
+.page-title{
+  position: relative;
+}
+
 h2{
   text-align: center;
   font-size: 1.4rem;
-  padding-right: 0px;
+  padding: 15px 0px;
   margin: 0px auto;
   display: inline-block;
   width: 100%;
@@ -74,6 +82,16 @@ h2{
 
     &:nth-child(3){
       margin-right: 2%;
+    }
+  }
+}
+
+.logInPanel{
+  .logInImg{
+    display: inline-block;
+
+    img{
+      width: 100vw;
     }
   }
 }

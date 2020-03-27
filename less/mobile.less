@@ -1,7 +1,7 @@
 @import "vars.less";
 
 body{
-  background: @white /*url(@home-background) no-repeat -650px top / auto 100vh*/;
+  background: @color-background /*url(@home-background) no-repeat -650px top / auto 100vh*/;
 }
 
 .bg-img{
@@ -19,7 +19,7 @@ body{
 
 header {
   color: @white;
-  background: @black-trans;
+  background: @color-background;
   font-family: @site-fonts;
   text-transform: uppercase;
   width: 100%;
@@ -28,6 +28,7 @@ header {
   position: fixed;
   top: 0px;
   left: 0px;
+  z-index: 999;
 }
 
 h1{
@@ -41,8 +42,10 @@ h1{
 }
 
 .page-title{
-  margin-top: 100px;
+  margin-top: 90px;
   color: black;
+  background-color: @white;
+  padding-top: 5px
 }
 
 h2{
@@ -72,6 +75,54 @@ h2{
     font-size: 1.5rem;
   }
 }
+
+.logInPanel{
+  width: 100%;
+  background: @color-background;
+  color: @lightblue;
+  height: auto;
+  position: relative;
+
+  .logInImg{
+    display: none;
+  }
+
+  a{
+    color: @lightblue;
+    text-decoration: underline;
+  }
+
+  label{
+    font-size: 1.2rem;
+  }
+
+  input{
+    border-radius: 5px;
+    padding: 5px;
+    width: 95%;
+  }
+
+  #logInBoxes{
+    margin-bottom: 15px;
+  }
+
+  #submit{
+    margin: 0px auto;
+    text-align: center;
+  }
+  button{
+    width: 80%;
+    height: 50px;
+    margin: 0px auto;
+    display: block;
+    background-color: @lightblue;
+    border: none;
+    border-radius: 5px;
+    font-size: 1.2em;
+  }
+}
+
+
 
 footer{
   color: @white;
