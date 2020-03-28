@@ -5,16 +5,24 @@
 
 //fonts
 @site-fonts: 'dark_net';
+@font-stack-safe: Helvetica, sans-serif;
+@font-stack-main: "Roboto", @font-stack-safe;
+@font-stack-highlight: "Roboto Condensed", @font-stack-safe;
 
 //colors
 @white: rgba(255, 255, 255, 1);
 @black: rgba(0, 0, 0, 1);
 @black-trans: rgba(0, 0, 0, 0.7);
 @header-background: #4c4c4c;
-@white-trans: rgba(1, 1, 1, 0.75);
+@white-trans: rgba(255, 255, 255, 0.75);
 @blue-trans: rgba(38, 84, 133, 0.54);
 @darkblue: rgba(38, 84, 133, 1);
 @lightblue: rgba(56, 147, 191, 1);
+@color-background: rgb(26, 26, 26);
+@color-highlight: rgb(175, 225, 250);
+@color-highlight-light: lighten(@color-highlight, 10%);
+@color-highlight-dark: darken(@color-highlight, 10%);
+@color-foreground: rgb(229,229,229);
 
 //sizes
 @sizes: {
@@ -24,7 +32,18 @@
   tablet2: 1023px;
   desktop: 1024px;
 };
+@map-dot-size: 40px;
 
 //images
 @home-background: '@{img}/background.jpg';
 @home-background-trans: '@{img}/background.png';
+
+//animations
+@transition-time: 0.25s;
+
+
+
+
+  
+
+

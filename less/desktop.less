@@ -11,18 +11,35 @@ h2{
   font-size: 1.6rem;
 }
 
-.logInPanel{
-  .logInImg{
+.content-panel{
+  .panel-img{
     width: 60%;
     float: left;
     img{
       width: 100%;
+      margin-bottom: 15px;
     }
   }
 
-  #login{
+  #login, #regform{
     margin: 0px auto;
     width: 40%;
     float: left;
+  }
+}
+
+.account-panel, .expedition-panel, .wanderlust-panel{
+  float: left;
+  width: 33.33333333%;
+  height: 100%;
+  padding: 20px;
+}
+
+.account-panel, .wanderlust-panel{
+  background: @black-trans;
+  color: @color-highlight-dark;
+
+  a{
+
   }
 }
