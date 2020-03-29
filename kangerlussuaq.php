@@ -6,14 +6,14 @@
   $PageTitle = "Kangerlussuaq, Greenland (North America)";
 ?>
 
-<div class="bg-img">
-  <img src="img/Kangerlussuaq.jpg" alt="Glaciers of Kangerlussuaq" />
-</div>
+
 
 <section class="page-title">
   <h2><?php echo $PageTitle ?></h2>
 </section>
-
+<div class="exp-img">
+  <img src="img/Kangerlussuaq.jpg" alt="Glaciers of Kangerlussuaq" />
+</div>
 <section class="main-content">
  <?php echo "Some people enjoy a destination where safety and history meet. 
  Want to hike to see one of the worlds most beautiful glaciers? Kangerlussuaq is 
@@ -29,22 +29,23 @@
 </section>
 
 
-<section class="top-reviews">
+<section class="reviews">
+  <h3>User Reviews</h3>
   <div class="top-review">
     <div class="review-content">
-      <h3><?php echo "{Review Headline}"?></h3>
+      <h4><?php echo "{Review Headline}"?></h4>
       <p><?php echo "{Review Content}"?></p>
     </div>
   </div>
   <div class="top-review">
     <div class="review-content">
-      <h3><?php echo "{Review Headline}"?></h3>
+      <h4><?php echo "{Review Headline}"?></h4>
       <p> <?php echo "{Review Content}"?></p>
     </div>
   </div>
   <div class="top-review">
     <div class="review-content">
-      <h3><?php echo "{Review headline}"?></h3>
+      <h4><?php echo "{Review headline}"?></h4>
       <p> <?php echo "{Review Content}"?></p>
     </div>
   </div>

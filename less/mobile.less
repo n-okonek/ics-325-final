@@ -4,7 +4,7 @@ body{
   background: @color-background /*url(@home-background) no-repeat -650px top / auto 100vh*/;
 }
 
-.bg-img{
+.bg-img, .exp-img{
   overflow: hidden;
   position: fixed;
   top: 0px;
@@ -57,8 +57,22 @@ h2{
   padding-right: 10px;
 }
 
-.top-reviews{
+.main-content{
+  color: @lightblue;
+  padding: 10px;
+}
+
+.top-reviews, .reviews{
   padding: 0px 10px 0px 10px;
+}
+
+.reviews{
+  h3{
+    color: @lightblue;
+    font-family: @site-fonts;
+    text-transform: uppercase;
+    text-align: center;
+  }
 }
 
 .top-review{

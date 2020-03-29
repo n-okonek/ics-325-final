@@ -6,18 +6,18 @@
   $PageTitle = "Bad Kissingen, Germany (Europe)";
 ?>
 
-<div class="bg-img">
-  <img src="img/Bad Kissingen.jpg" alt="Sleeping in Bad Kissingen" />
-</div>
+
 
 <section class="page-title">
   <h2><?php echo $PageTitle ?></h2>
 </section>
-
+<div class="exp-img">
+  <img src="img/bad-kissingen.jpg" alt="Sleeping in Bad Kissingen" />
+</div>
 <section class="main-content">
  <?php echo "I know what you may be thinking… does the name of this 
  region really speak for the millions of kissers that live there? It’s 
- possible, but situations have not bee reported. You would think that 
+ possible, but situations have not been reported. You would think that 
  the hot mineral springs would set a better tone for such a situation… 
  but let’s leave it to our reviewers to tell their tails! Though the 
  natural springs sound lovely, it is the perfect getaway if you want 
@@ -29,22 +29,23 @@
 </section>
 
 
-<section class="top-reviews">
+<section class="reviews">
+  <h3>User Reviews</h3>
   <div class="top-review">
     <div class="review-content">
-      <h3><?php echo "{Review Headline}"?></h3>
+      <h4><?php echo "{Review Headline}"?></h3>
       <p><?php echo "{Review Content}"?></p>
     </div>
   </div>
   <div class="top-review">
     <div class="review-content">
-      <h3><?php echo "{Review Headline}"?></h3>
+      <h4><?php echo "{Review Headline}"?></h3>
       <p> <?php echo "{Review Content}"?></p>
     </div>
   </div>
   <div class="top-review">
     <div class="review-content">
-      <h3><?php echo "{Review headline}"?></h3>
+      <h4><?php echo "{Review headline}"?></h3>
       <p> <?php echo "{Review Content}"?></p>
     </div>
   </div>

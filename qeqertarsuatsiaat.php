@@ -6,13 +6,15 @@
   $PageTitle = "Qeqertarsuatsiaat, Greenland (North America)";
 ?>
 
-<div class="bg-img">
-  <img src="img/Qeqertarsuatsiaat.jpg" alt="Small Town, Large Mountains" />
-</div>
+
 
 <section class="page-title">
   <h2><?php echo $PageTitle ?></h2>
 </section>
+
+<div class="exp-img">
+  <img src="img/qeqertarsuatsiaat.jpg" alt="Small Town, Large Mountains" />
+</div>
 
 <section class="main-content">
  <?php echo "If you like a small-town getaway feel with treasure hunts and 
@@ -28,22 +30,23 @@
 </section>
 
 
-<section class="top-reviews">
+<section class="reviews">
+  <h3>User Reviews</h3>
   <div class="top-review">
     <div class="review-content">
-      <h3><?php echo "{Review Headline}"?></h3>
+      <h4><?php echo "{Review Headline}"?></h4>
       <p><?php echo "{Review Content}"?></p>
     </div>
   </div>
   <div class="top-review">
     <div class="review-content">
-      <h3><?php echo "{Review Headline}"?></h3>
+      <h4><?php echo "{Review Headline}"?></h4>
       <p> <?php echo "{Review Content}"?></p>
     </div>
   </div>
   <div class="top-review">
     <div class="review-content">
-      <h3><?php echo "{Review headline}"?></h3>
+      <h4><?php echo "{Review headline}"?></h4>
       <p> <?php echo "{Review Content}"?></p>
     </div>
   </div>
