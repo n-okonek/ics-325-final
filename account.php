@@ -55,7 +55,7 @@
             <a href="#">View info on this place</a>
         </div>
         <div class="container" id="submit">
-            <button type="submit">Add Review</button>
+            <button type="submit">Add Journey</button>
         </div>  
     </div>
 

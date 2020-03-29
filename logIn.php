@@ -17,12 +17,20 @@
     <img src="img/islandBackground.jpg" alt="Desert island">
   </div>
   <!-- discuss log-in processing for php --->
-  <form id="login" action="./includes/auth.php" method="post">
+  <form id="login" action="./includes/auth.php" method="post" onSubmit="return validate();">
+    <?php 
+      if(isset($_SESSION["errorMessage"])) {
+    ?>
+    <div class="error-message"><?php  echo $_SESSION["errorMessage"]; ?></div>
+    <?php 
+      unset($_SESSION["errorMessage"]);
+      } 
+    ?>
     <div class="container" id="logInBoxes" >
-      <label for="userName"><b>User Name:</b></label>
+      <label for="userName"><b>User Name:</b></label><span id="user_info" class="error-info"></span>
       <input class="form-control" type="text" placeholder="Enter Username" name="userName" id="userName" required></br>
 
-      <label for="pswd"><b>Password:</b></label>
+      <label for="pswd"><b>Password:</b></label><span id="password_info" class="error-info"></span>
       <input class="form-control" type="password" placeholder="Enter Password" name="pswd" id="pswd" required></br>
       
     </div>
