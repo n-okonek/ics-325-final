@@ -1,14 +1,12 @@
 <?php
 require("includes/page.php");
 
-$homepage = new Page();
+$login = new Page();
 $PageTitle = "Login To Your Account"; //replace with SQL Query
-$ReviewHeadline = "{Review Headline}"; //replace with SQL Query
-$ReviewContent = "{Review Content}"; //replace with SQL Query
 $BgImg = "islandBackground.jpg"; //replace with SQL Query
 $BgImgAlt = "Desert island"; //replace with SQL Query
 
-$homepage->content ="
+$login->content ="
 <section class='page-title'>
 <h2>".$PageTitle."</h2>
 </section>
@@ -38,5 +36,5 @@ $homepage->content ="
 </div>
 ";
 
-$homepage->Display();
+$login->Display();
 ?>
