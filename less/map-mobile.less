@@ -1,0 +1,36 @@
+.map{
+  margin: 20px auto 0px;
+  width: 100%;
+  background: @color-background;
+  height: 100%;
+  padding-bottom: 20px;
+  overflow: auto;
+}
+
+.distribution-map{
+  margin: 0px 10px;
+  width: 90%;
+
+  @media (min-width: @sizes[tablet1]){
+    margin: 0px auto;
+    text-align: center;
+  }
+  
+  &>img{
+    display: none;
+  }
+
+  .map-point{
+    width: 100%;
+    margin: 0px auto 10px;
+    border: @map-dot-size/8 solid @color-highlight-dark;
+    .border-radius(@map-dot-size/2);
+    margin: 5px;
+    background: @color-background;
+    color: @color-foreground;
+
+    @media (min-width: @sizes[tablet1]){
+      width: 40%;
+    }
+  }
+}

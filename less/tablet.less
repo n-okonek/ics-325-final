@@ -1,0 +1,102 @@
+body{
+  background: /*url(@home-background) no-repeat -850px top / auto 70vh,*/
+              @color-background;
+}
+
+.bg-img{
+  height: 70vh;
+  left: -1225px;
+}
+
+header {
+  background: @color-background;
+  min-height: 50px;
+  z-index: 999;
+
+  .open{
+    bottom: -33px;
+  }
+}
+
+h1{
+  float: left;
+  font-size: 1.3rem;
+  width: max-content;
+  margin-block-start: .67em;
+}
+
+.page-title{
+  position: relative;
+}
+
+h2{
+  text-align: center;
+  font-size: 1.4rem;
+  padding: 15px 0px;
+  margin: 0px auto;
+  display: inline-block;
+  width: 100%;
+}
+
+.exp-img{
+  display: none;
+}
+
+.main-content{
+  border: 2px solid @black;
+  border-radius: 5px;
+  box-shadow: 2px 3px @black-trans;
+  background: @white-trans;
+  min-height: auto;
+  margin: 20px;
+  padding: 20px;
+  color: @darkblue;
+}
+
+.top-reviews{
+  position: fixed;
+  height: 30%;
+  border: 2px solid @black;
+  border-radius: 5px;
+  box-shadow: 2px 3px @black-trans;
+  padding: 0px;
+  margin: 0px auto;
+  background: @white-trans;
+  right: 0px;
+  left: 0px;
+  bottom: 15px;
+  width: 90%;
+
+  .top-review{
+    width: 30%;
+    margin: 10px 0px;
+    position: relative;
+    float: left;
+    height: 95%;
+    border: none;
+    background: @lightblue;
+
+    &:nth-child(1){
+      margin-left: 2%;
+    }
+
+    &:nth-child(2){
+      margin-left: 3%;
+      margin-right: 3%;
+    }
+
+    &:nth-child(3){
+      margin-right: 2%;
+    }
+  }
+}
+
+.content-panel{
+  .panel-img{
+    display: inline-block;
+
+    img{
+      width: 100vw;
+    }
+  }
+}
