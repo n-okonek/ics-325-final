@@ -18,7 +18,7 @@ class AdventurePage extends Page{
   public function Display(){
     $this -> DisplayHead(); // includes all meta information including site title and page names
     $this -> DisplayBody();
-    $this -> DisplayHeader(); //includes display menu
+    $this -> DisplayHeader($this->buttons); //includes display menu
     echo $this->content;
     $this->ReviewGen($this->reviews);
     $this -> DisplayFooter();

@@ -5,9 +5,8 @@
     public $title = "Wanderlust Outpost";
     public $buttons = ["Home" => "index.php",
                        "Blog" => "blog.php",
-                       "Expeditions" => "expeditions.php",
-                       "Login" => "login.php",
-                       "My Account" => "myaccount.php"];
+                       "Expeditions" => "expeditions.php"
+                      ];
     
     public function __set($name, $value){
       $this->$name = $value;
@@ -16,7 +15,7 @@
     public function Display(){
       $this -> DisplayHead(); // includes all meta information including site title and page names
       $this -> DisplayBody();
-      $this -> DisplayHeader(); //includes display menu
+      $this -> DisplayHeader($this->buttons); //includes display menu
       echo $this->content;
       $this -> DisplayFooter();
     }
@@ -54,7 +53,7 @@
       ?>
         <!-- import bootstrap CSS library -->
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-        
+        <!-- import local styles-->
         <link rel="stylesheet/less" type="text/css" href="less/styles.less" />
       <?php
     }
@@ -82,7 +81,11 @@
       <?php
     }
 
-    public function DisplayHeader(){
+    public function DisplayHeader($buttons){
+      $loggedIn = false;
+      $button2 = ["Login" => "login.php",
+                  "My Account" => "myaccount.php",
+                  "Logout" => "logout.php"];
       ?>
       <header>
         <h1><?php echo $this->title; ?></h1>
@@ -91,24 +94,31 @@
             <span class="cls"></span>
               <span>
                 <ul class="sub-menu">
-                  <li>
-                    <a href="./index.php" title="Home">Home</a>
-                  </li>
-                  <li>
-                    <a href="./blog.php" title="Blog">Blog</a>
-                  </li>
-                  <li>
-                    <a href="./expeditions.php" title="Expeditions">Expeditions</a>
-                  </li>
-                  <li>
-                    <a href="./login.php" title="Log In">Log In</a>
-                  </li>
+                  <?php
+                    while ( list($name, $url) = each($buttons) ){
+                      $this->DisplayButton($name, $url);
+                    }
+                    if (!$loggedIn){ ?>
+                      <li>
+                        <a href="./<?=$button2["Login"]?>" title="Login">Login</a>
+                      </li>
+                      <?php
+                    }
+                    ?>
                 </ul>
               </span>
             <span class="cls"></span>
           </div> 
         <!-- end mobile menu -->
       </header>
+      <?php
+    }
+
+    public function DisplayButton($name, $url){
+      ?>
+        <li>
+          <a href="./<?=$url?>" title="<?=$name ?>"><?=$name?></a>
+        </li>
       <?php
     }
 
@@ -121,6 +131,7 @@
       ?>
         <script src="scripts/mm.js" async defer></script>
         <script src="scripts/validate.js" async defer></script>
+        <script src="scripts/display.js" async defer></script>
         </body>
       </html>
     <?php

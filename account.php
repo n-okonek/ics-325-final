@@ -5,16 +5,21 @@ $BgImgAlt = "Bob Marley Resort, Nasau, Bahamas"; //replace with SQL Query
 
 Class MyAccountPage extends Page{
   public $user = "UserName"; //replace with SQL query from user table
+  public $countries = [["US", "United States"],
+  ["UM", "United States Minor Outlying Islands"]
+ ];
 
   public function Display(){
     $this -> DisplayHead(); // includes all meta information including site title and page names
     $this -> DisplayBody();
-    $this -> DisplayHeader(); //includes display menu
+    $this -> DisplayHeader($this->buttons); //includes display menu
     echo $this->content;
     $this -> DisplayAccountInfo();
     $this -> DisplayExpeditions();
     $this -> DisplayWanderlust();
     $this -> DisplayFooter();
+    $this -> UpdateUserForm($this->countries);
+    $this -> AddReview($this->user);
   }
 
   public function DisplayAccountInfo(){
@@ -30,10 +35,49 @@ Class MyAccountPage extends Page{
             <p><?php echo "Country:"."{country}" ?></p>
         </div>
         <div class="container" id="submit">
-            <button type="submit">Update Profile</button>
+            <button type="submit" onclick="updateUser();">Update Profile</button>
         </div>    
       </div>
     <?php
+  }
+
+  public function UpdateUserForm($countries){
+    ?>
+    <div class="update-user">
+  <form id="update-user" action="userupdate.php" method="post">
+    <div class="container" id="register">
+      <label for="Fname">First Name:</label>
+      <input class="form-control" type="text" name="Fname" id="Fname" maxLength="24">
+      </br>
+      <label for="Lname">Last Name:</label>
+      <input class="form-control" type="text" name="Lname" id="Lname" maxLength="24">
+      </br>
+      <label for="email">Email:</label>
+      <input class="form-control" type="text" name="email" id="email" maxLength="36">
+      <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+      </br>
+      <label for="birthday">Date of birth</label>
+      <input class="form-control" type="date" name="dob" id="db">
+      </br>
+      <label for="origin">What country are you from?</label>
+      <select class="form-control" class id="origin">
+        <?php
+          for ($c=0; $c < count($countries); $c++){
+            echo "<option value='".$countries[$c][0]."'>".$countries[$c][1]."</option>";
+          }
+        ?>
+      </select>
+      </br>
+    </div>
+    <div class="container" id="submit">
+      <button type="submit">Update Profile</button>
+    </div>
+    <div class="container" id="cancel">
+      <div onclick="$('.update-user').fadeOut();">Cancel</div>
+    </div>
+  </form>
+  </div>
+  <?php
   }
 
   public function DisplayExpeditions(){
@@ -48,10 +92,30 @@ Class MyAccountPage extends Page{
           <p><?php echo "{review or rating}"?>
         </div>
         <div class="container" id="submit">
-          <button type="submit">Add Review</button>
+          <button type="submit" onclick="addReview();">Add Review</button>
         </div>    
       </div>
     <?php
+  }
+
+  public function AddReview($user){
+    ?>
+    <div class="add-review">
+      <form id="add-review" action="addreview.php" method="post">
+        <label for="reviewHeadline">Review Headline: </label>
+        <input class="form-control" type="text" name="reviewHeadline" id="reviewHeadline" />
+        </br>
+        <label for="reviewText">Write your reivew:</label>
+        <textarea id="reviewText" name="reviewText" class="form-control"></textarea>
+        <div class="container" id="submit">
+          <button type="submit">Update Profile</button>
+        </div>
+        <div class="container" id="cancel">
+          <div onclick="$('.add-review').fadeOut();">Cancel</div>
+        </div>
+      </form>
+    </div>
+  <?php
   }
 
   public function DisplayWanderlust(){
