@@ -38,6 +38,7 @@ Class MyAccountPage extends Page{
     $this -> DisplayFooter();
     $this -> UpdateUserForm($this->countries);
     $this -> AddReview($this->user, $this->CoE, $this->expedition);
+    $this -> AddJourney($this->CoE, $this->expedition);
   }
 
   public function DisplayAccountInfo(){
@@ -182,10 +183,44 @@ Class MyAccountPage extends Page{
           <a href="#">View info on this place</a>
         </div>
         <div class="container" id="submit">
-          <button type="submit">Add Journey</button>
+          <button type="submit" onclick="addJourney()">Add Journey</button>
         </div>  
       </div>
     <?php
+  }
+
+  public function AddJourney($CoE, $expedition){
+    ?>
+    <div class="add-journey">
+    <form id="add-journey" action="addjourney.php" method="post">
+      <div class="form-group">
+        <label for="journeyCountry">Select a Country:</label>
+        <select class="form-control" id="journeyCountry" onchange="showExpeditions(this.value);">
+          <option>Select an option</option>
+          <? for($c=0; $c<count($CoE); $c++){
+              echo "<option value='".$CoE[$c]."'>".$CoE[$c]."</option>";
+          }?>
+        </select>
+      </div>
+      <div class="form-group expedition-selector">
+        <label for="journeyExpedition">Select an Expedition:</label>
+        <select class="form-control" id="journeyExpedition">
+          <option>Select an option</option>
+          <? for($e=0; $e<count($expedition); $e++){
+              echo "<option value='".$expedition[$e]."'>".$expedition[$e]."</option>";
+          }?>
+        </select>
+      </div>
+      <input type="date" id="date-added" name="date-added" value="<?=date("Y/m/d");?>" hidden />
+      <div class="container" id="submit">
+        <button type="submit">Update Profile</button>
+      </div>
+      <div class="container" id="cancel">
+        <div onclick="$('.add-journey').fadeOut();">Cancel</div>
+      </div>
+    </form>
+  </div>
+  <?php
   }
 
 }
