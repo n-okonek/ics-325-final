@@ -6,8 +6,26 @@ $BgImgAlt = "Bob Marley Resort, Nasau, Bahamas"; //replace with SQL Query
 Class MyAccountPage extends Page{
   public $user = "UserName"; //replace with SQL query from user table
   public $countries = [["US", "United States"],
-  ["UM", "United States Minor Outlying Islands"]
- ];
+                       ["UM", "United States Minor Outlying Islands"]
+  ];
+  public $CoE = ["Australia",
+                 "Germany",
+                 "Greenland",
+                 "Africa",
+                 "United States",
+                 "Russia"];
+  public $expedition = ["Alice Springs",
+                        "Bad Kissingen",
+                        "Berlin",
+                        "Kangerlussuaq",
+                        "Kazumba",
+                        "Los Angeles, California",
+                        "Mwanza",
+                        "Qeqertarsuatsiaat",
+                        "Samburg",
+                        "San Diego, California",
+                        "Snezhngorsk",
+                        "Yulara"];
 
   public function Display(){
     $this -> DisplayHead(); // includes all meta information including site title and page names
@@ -19,7 +37,7 @@ Class MyAccountPage extends Page{
     $this -> DisplayWanderlust();
     $this -> DisplayFooter();
     $this -> UpdateUserForm($this->countries);
-    $this -> AddReview($this->user);
+    $this -> AddReview($this->user, $this->CoE, $this->expedition);
   }
 
   public function DisplayAccountInfo(){
@@ -98,15 +116,49 @@ Class MyAccountPage extends Page{
     <?php
   }
 
-  public function AddReview($user){
+  public function AddReview($user, $CoE, $expedition){
     ?>
     <div class="add-review">
       <form id="add-review" action="addreview.php" method="post">
+        <div class="form-group">
+          <label for="expeditionCountry">Select a Country:</label>
+          <select class="form-control" id="expeditionCountry" onchange="showExpeditions(this.value);">
+            <option>Select an option</option>
+            <? for($c=0; $c<count($CoE); $c++){
+                echo "<option value='".$CoE[$c]."'>".$CoE[$c]."</option>";
+            }?>
+          </select>
+        </div>
+        <div class="form-group expedition-selector">
+          <label for="expedition">Select an Expedition:</label>
+          <select class="form-control" id="expedition">
+            <option>Select an option</option>
+            <? for($e=0; $e<count($expedition); $e++){
+                echo "<option value='".$expedition[$e]."'>".$expedition[$e]."</option>";
+            }?>
+          </select>
+        </div>
         <label for="reviewHeadline">Review Headline: </label>
         <input class="form-control" type="text" name="reviewHeadline" id="reviewHeadline" />
-        </br>
+        <br />
         <label for="reviewText">Write your reivew:</label>
         <textarea id="reviewText" name="reviewText" class="form-control"></textarea>
+        <br />
+        <div class="rating-label">How would you rate this trip?</div>
+        <div class="rating">
+          <input type="radio" name="rating" value="5" id="rating-5">
+          <label for="rating-5"></label>
+          <input type="radio" name="rating" value="4" id="rating-4">
+          <label for="rating-4"></label>
+          <input type="radio" name="rating" value="3" id="rating-3">
+          <label for="rating-3"></label>
+          <input type="radio" name="rating" value="2" id="rating-2">
+          <label for="rating-2"></label>
+          <input type="radio" name="rating" value="1" id="rating-1">
+          <label for="rating-1"></label> 
+        </div>
+        <input type="date" id="date-reviewed" name="date-reviewed" value="<?=date("Y/m/d");?>" hidden />
+        <br />
         <div class="container" id="submit">
           <button type="submit">Update Profile</button>
         </div>
