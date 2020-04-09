@@ -21,7 +21,14 @@ Class RegistrationPage extends Page{
 
   public function DisplayRegForm($countries){
     ?>
-  <form id="regform" action="newuser.php" method="post">
+  <form id="regform" action="./includes/newuser.php" method="post">
+  <?php
+        if (isset($_SESSION["errorMessage"])){
+          ?>
+          <div class="alert alert-warning" role="alert"><?= $_SESSION["errorMessage"];?></div>
+          <?php unset($_SESSION["errorMessage"]);
+        }
+      ?>
     <div class="container" id="register">
       <label for="Fname">First Name:</label>
       <input class="form-control" type="text" name="Fname" id="Fname" maxLength="24">
@@ -33,8 +40,13 @@ Class RegistrationPage extends Page{
       <input class="form-control" type="text" name="email" id="email" maxLength="36">
       <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
       </br>
+      <label for="password">Choose a Password:</label>
+      <input class="form-control" type="password" name="password" id="password" onchange="" />
+      <label for="password2">Confirm Password:</label>
+      <input class="form-control" type="password" name="password2" id="password2" onchange="" /><br />
+      <div class="alert" id="passmatch" style="display: none;"></div>
       <label for="birthday">Date of birth</label>
-      <input class="form-control" type="date" name="dob" id="db">
+      <input class="form-control" type="date" name="dob" id="dob">
       </br>
       <label for="origin">What country are you from?</label>
       <select class="form-control" class id="origin">
@@ -47,7 +59,7 @@ Class RegistrationPage extends Page{
       </br>
     </div>
     <div class="container" id="submit">
-      <button type="submit">Register</button>
+      <button id="register" type="submit" name="register" value="register" >Register</button>
     </div>
   </form>
   </div>

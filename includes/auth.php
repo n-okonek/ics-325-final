@@ -12,8 +12,9 @@ if (! empty($_POST["login"])) {
     $isLoggedIn = $member->processLogin($username, $password);
     if (! $isLoggedIn) {
         $_SESSION["errorMessage"] = "Invalid Credentials";
+        header("Location: ../login.php");
     }
-    header("Location: ../account.php", true);
+    header("Location: ../account.php");
     exit();
 } else{
     header("Location: ../login.php");
