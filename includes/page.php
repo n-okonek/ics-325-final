@@ -1,5 +1,4 @@
 <?php
-  namespace Wander;
 
   class Page{
     public $content;

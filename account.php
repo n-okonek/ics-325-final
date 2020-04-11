@@ -142,7 +142,7 @@ Class MyAccountPage extends Page{
         <label for="reviewHeadline">Review Headline: </label>
         <input class="form-control" type="text" name="reviewHeadline" id="reviewHeadline" />
         <br />
-        <label for="reviewText">Write your reivew:</label>
+        <label for="reviewText">Write your review:</label>
         <textarea id="reviewText" name="reviewText" class="form-control"></textarea>
         <br />
         <div class="rating-label">How would you rate this trip?</div>
