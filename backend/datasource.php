@@ -14,11 +14,11 @@ class DataSource
     // when using above 7.1.0, declare the below constants as private
     const HOST = 'localhost';
 
-    const USERNAME = 'root';
+    const USERNAME = 'glazpmck_ics325_web';
 
-    const PASSWORD = '';
+    const PASSWORD = 'ICS325.01-2020';
 
-    const DATABASENAME = 'phpsamples';
+    const DATABASENAME = 'glazpmck_ics325';
 
     private $conn;
 
