@@ -28,7 +28,7 @@ class Member
     
     public function processLogin($username, $password) {
         $passwordHash = md5($password);
-        $query = "select * FROM registered_users WHERE user_name = ? AND password = ?";
+        $query = "SELECT * FROM users WHERE Account_ID = ? AND Psword = ?";
         $paramType = "ss";
         $paramArray = array($username, $passwordHash);
         $memberResult = $this->ds->select($query, $paramType, $paramArray);
@@ -40,7 +40,7 @@ class Member
 
     public function createUser($fname, $lname, $email, $pw, $dob, $coo){
         $passwordHash = md5($pw);
-        $query = "insert into users values (?, ?, ?, ?, ?, ?)";
+        $query = "INSERT INTO account VALUES (?, ?, ?, ?, ?, ?)";
         $paramType = "sssssi";
         $paramArray = array($fname, $lname, $email, $pw, $dob, $coo);
         $newUser = $this->ds->insert($query, $paramType,$paramArray);
@@ -50,5 +50,6 @@ class Member
             return true;
         }
     }
+
 }
 ?>
