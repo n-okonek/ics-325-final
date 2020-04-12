@@ -182,3 +182,42 @@ footer{
     color: @white;
   }
 }
+
+.update-user, .add-review, .add-journey{
+  display: none;
+  position: absolute;
+  top: 0px;
+  width: 100%;
+  height: 100%;
+  background: @black-trans;
+
+  button{
+    width: 80%;
+    height: 50px;
+    margin: 0px auto;
+    display: block;
+    background-color: @lightblue;
+    border: none;
+    border-radius: 5px;
+    font-size: 1.2em;
+  }
+
+  #update-user, #add-review, #add-journey{
+    background: @white;
+    margin: auto;
+    width: 50%;
+    padding: 15px;
+    border-radius: 5px;
+    position: relative;
+    top: 15%;
+  }
+
+  #cancel{
+    cursor: pointer;
+    text-align: center;
+  }
+
+  .expedition-selector{
+    display: none;
+  }
+}
