@@ -9,6 +9,16 @@
       "port": 3306,
       "server": "localhost",
       "username": "root"
+    },
+    {
+      "connectionTimeout": 60,
+      "database": "glazpmck_ics325",
+      "dialect": "MySQL",
+      "name": "WandlustOP",
+      "password": "ICS325.01-2020",
+      "port": 3306,
+      "server": "localhost",
+      "username": "glazpmck_ics325_web"
     }
   ]
 }
