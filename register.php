@@ -46,7 +46,7 @@ Class RegistrationPage extends Page{
       <input class="form-control" type="date" name="dob" id="dob">
       </br>
       <label for="origin">What country are you from?</label>
-      <select class="form-control" class id="origin">
+      <select class="form-control" id="origin" name='origin'>
         <?php
           for ($c=0; $c < count($countries); $c++){
             echo "<option value='".$countries[$c][0]."'>".$countries[$c][1]."</option>";

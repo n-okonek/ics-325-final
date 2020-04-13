@@ -1,5 +1,5 @@
 <?php
-if (! empty($_POST["register"])){
+if ( !empty($_POST["register"]) ){
   $fName = filter_var($_POST["Fname"], FILTER_SANITIZE_STRING);
   $lName = filter_var($_POST["Lname"], FILTER_SANITIZE_STRING);
   $email = filter_var($_POST["email"], FILTER_SANITIZE_STRING);
