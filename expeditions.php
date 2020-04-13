@@ -2,18 +2,11 @@
 require("includes/page.php");
 
 $mappage = new Page();
-$PageTitle = "Choose Your Expedition"; //replace with SQL Query pull from page table
 $ExpeditionHeadline = "{Location}"; //replace with SQL Query pull from expeditions table
 $ExpeditionSummary = "{ContentSummary}"; //replace with SQL Query pull from expeditions table
-//$BgImg = "mountains.jpg"; //replace with SQL Query pull from page table
-//$BgImgAlt = "Gone Wandering..."; //replace with SQL Query
 $map = file_get_contents('img/map.php');
 
 $mappage->content ="
-<section class='page-title'>
-<h2>".$PageTitle."</h2>
-</section>
-
 <section class='map'>
   <div class='distribution-map'>".$map."
   <!-- buttons will need to be dynamically generated with php -->
@@ -80,5 +73,5 @@ $mappage->content ="
 
 $credits = "Original map image and Sass Code by <a href='https://codepen.io/mirichan/pen/jEBmyG' target='_blank'>Michael Mroz</a>. Refactored to Less and PHP by Nick Okonek.";
 
-$mappage->Display();
+$mappage->Display(3);
 ?>
