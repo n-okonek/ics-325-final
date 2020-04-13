@@ -161,7 +161,7 @@
           }
         break;
 
-        case 4:
+        case ($pageID = 4 || $pageID =5):
           while($stmt->fetch()){
             ?>
               <section class="page-title">

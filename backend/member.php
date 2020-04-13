@@ -1,54 +1,40 @@
 <?php
-namespace Wander;
-
-use \Wander\DataSource;
 
 class Member
 {
-
-    private $dbConn;
-
-    private $ds;
+ private $db;
 
     function __construct()
     {
-        require_once "datasource.php";
-        $this->ds = new DataSource();
+        $this->db = new mysqli('localhost', 'glazpmck_ics325_web', 'ICS325.01-2020', 'glazpmck_ics325' );
     }
 
-    function getMemberById($memberId)
-    {
-        $query = "select * FROM registered_users WHERE id = ?";
-        $paramType = "i";
-        $paramArray = array($memberId);
-        $memberResult = $this->ds->select($query, $paramType, $paramArray);
-        
-        return $memberResult;
-    }
-    
     public function processLogin($username, $password) {
         $passwordHash = md5($password);
-        $query = "SELECT * FROM users WHERE Account_ID = ? AND Psword = ?";
-        $paramType = "ss";
-        $paramArray = array($username, $passwordHash);
-        $memberResult = $this->ds->select($query, $paramType, $paramArray);
-        if(!empty($memberResult)) {
-            $_SESSION["userId"] = $memberResult[0]["id"];
+        $query = "SELECT * FROM users WHERE Email = ? AND Psword = ?";
+        $stmt = $this->db->prepare($query);
+        $stmt->bind_param("ss", $username, $passwordHash);
+        $stmt->execute();
+        $stmt->store_result();
+        $stmt->bind_result($user);
+
+        if(!empty($user)) {
+            $_SESSION["userId"] = $user;
             return true;
         }
     }
 
     public function createUser($fname, $lname, $email, $pw, $dob, $coo){
         $passwordHash = md5($pw);
-        $query = "INSERT INTO account VALUES (?, ?, ?, ?, ?, ?)";
-        $paramType = "sssssi";
-        $paramArray = array($fname, $lname, $email, $pw, $dob, $coo);
-        $newUser = $this->ds->insert($query, $paramType,$paramArray);
-
-        if(!empty($newUser)){
-            $_SESSION["userId"] = $newUser[0]["id"];
+        $query = "INSERT INTO Users (Email, Fname,Lname,Psword,DOB,Origin) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+        $stmt = $this->db->prepare($query);
+        $stmt->bind_param("ssssss", $email,$fname,$lname,$passwordHash,$dob,$coo);
+        $stmt->execute();
+        
+        if($stmt->affected_rows > 0){
             return true;
         }
+
     }
 
 }

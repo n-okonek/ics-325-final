@@ -1,7 +1,4 @@
 <?php
-  namespace Wander;
-  use \Wander\Page;
-
 require("includes/page.php");
 $BgImg = "marley_resort.jpg"; //replace with SQL Query
 $BgImgAlt = "Bob Marley Resort, Nasau, Bahamas"; //replace with SQL Query

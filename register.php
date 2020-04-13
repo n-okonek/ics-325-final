@@ -1,19 +1,16 @@
 <?php
 require("includes/page.php");
 
-$PageTitle = "New User Registration"; //replace with SQL Query
-$BgImg = "marley_resort.jpg"; //replace with SQL Query
-$BgImgAlt = "Bob Marley Resort, Nasau, Bahamas"; //replace with SQL Query
-
 Class RegistrationPage extends Page{
   public $countries = [["US", "United States"],
                        ["UM", "United States Minor Outlying Islands"]
                       ];
 
-  public function Display(){
+  public function Display($pageID){
     $this -> DisplayHead(); // includes all meta information including site title and page names
     $this -> DisplayBody();
     $this -> DisplayHeader($this->buttons); //includes display menu
+    $this -> SetPageInfo($pageID);
     echo $this->content;
     $this->DisplayRegForm($this->countries);
     $this -> DisplayFooter();
@@ -69,17 +66,8 @@ Class RegistrationPage extends Page{
 
 $register = new RegistrationPage();
 
-$register->content ="
-<section class='page-title'>
-<h2>".$PageTitle."</h2>
-</section>
+$register->content ="";
 
-<div class='content-panel'>
-<div class='panel-img'>
-  <!-- just pic for reference  -->
-  <img src='img/".$BgImg."' alt='".$BgImgAlt."'>
-</div>";
-
-$register -> Display();
+$register -> Display(5);
 
 ?>
