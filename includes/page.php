@@ -12,10 +12,11 @@
       $this->$name = $value;
     }
 
-    public function Display(){
+    public function Display($pageID){
       $this -> DisplayHead(); // includes all meta information including site title and page names
       $this -> DisplayBody();
       $this -> DisplayHeader($this->buttons); //includes display menu
+      $this -> SetPageInfo($pageID);
       echo $this->content;
       $this -> DisplayFooter();
     }
@@ -120,6 +121,62 @@
           <a href="./<?=$url?>" title="<?=$name ?>"><?=$name?></a>
         </li>
       <?php
+    }
+
+    public function SetPageInfo($pageID){
+
+      $db = new mysqli('localhost', 'glazpmck_ics325_web', 'ICS325.01-2020', "glazpmck_ics325");
+      $query = "SELECT PageTitle, BGImg, BGImgAlt FROM sitemap where pageID = ?";
+      $stmt = $db->prepare($query);
+      $stmt->bind_param('i', $pageID);
+      $stmt->execute();
+      $stmt->store_result();
+      $stmt->bind_result($PageTitle, $BGImg, $BGImgAlt);
+
+      switch ($pageID){
+        case 1:
+          while($stmt->fetch()){
+            ?><div class="bg-img">
+                <img src="img/<?=$BGImg?>" alt="<?=$BGImgAlt?>" />
+              </div>
+
+              <section class='page-title'>
+                <h2><?=$PageTitle?></h2>
+              </section>
+            <?php
+          }
+          break;
+        
+        case ($pageID == 2 || $pageID == 3 ):
+          while($stmt->fetch()){
+            ?>
+              <div class="account-img">
+                <img src="img/<?=$BGImg?>" alt="<?=$BGImgAlt?>" />
+              </div>
+          
+              <section class="page-title">
+                <h2><?=$PageTitle?></h2>
+              </section>
+            <?php
+          }
+        break;
+
+        case 4:
+          while($stmt->fetch()){
+            ?>
+              <section class="page-title">
+                <h2><?=$PageTitle?></h2>
+              </section>
+
+              <div class="content-panel">
+                <div class="panel-img">
+                <!-- just pic for reference  -->
+                  <img src="img/<?=$BGImg?>" alt="<?=$BGImgAlt?>" />
+                </div>
+            <?php
+          }
+        break;
+      }
     }
 
     public function DisplayFooter(){
