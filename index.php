@@ -1,22 +1,14 @@
 <?php
 
 require("includes/page.php");
-require("backend/getreviews.php");
-use \Wander\GetReviews;
-
-$PageTitle = "Your Expeditions Start Here"; //replace with SQL Query
-$BgImg = "background.jpg"; //replace with SQL Query
-$BgImgAlt = "Cliffs of Moor, Ireland"; //replace with SQL Query
-
-
 
 class Homepage extends Page{
 
   public function Display(){
-    session_start();
     $this -> DisplayHead(); // includes all meta information including site title and page names
     $this -> DisplayBody();
     $this -> DisplayHeader($this->buttons); //includes display menu
+    $this -> SetPageInfo(1);
     echo $this->content;
     $this ->DisplayReviews();
     $this -> DisplayFooter();
@@ -43,20 +35,18 @@ class Homepage extends Page{
     </div>
     <?php
     }
+
+    $stmt->free_result();
+    $db->close();
     echo "</section>";
   }
 }
 
 $homepage = new Homepage();
 
-$homepage->content ="
-<div class='bg-img'>
-<img src='img/".$BgImg."' alt='".$BgImgAlt."' />
-</div>
 
-<section class='page-title'>
-<h2>".$PageTitle."</h2>
-</section>";
+
+$homepage->content ="";
 
 $homepage->Display();
 ?>
