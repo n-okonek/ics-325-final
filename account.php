@@ -1,4 +1,7 @@
 <?php
+  namespace Wander;
+  use \Wander\Page;
+
 require("includes/page.php");
 $BgImg = "marley_resort.jpg"; //replace with SQL Query
 $BgImgAlt = "Bob Marley Resort, Nasau, Bahamas"; //replace with SQL Query
@@ -89,7 +92,7 @@ Class MyAccountPage extends Page{
       </br>
     </div>
     <div class="container" id="submit">
-      <button type="submit">Update Profile</button>
+      <button type="submit" value="update" name="update">Update Profile</button>
     </div>
     <div class="container" id="cancel">
       <div onclick="$('.update-user').fadeOut();">Cancel</div>
