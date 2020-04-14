@@ -39,7 +39,9 @@ class Member
         }
     }
 
-    public function updateUser(){}
+    public function updateUser(){
+        
+    }
 
 }
 ?>

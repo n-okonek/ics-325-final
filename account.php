@@ -8,24 +8,24 @@ Class MyAccountPage extends Page{
   public $countries = [["US", "United States"],
                        ["UM", "United States Minor Outlying Islands"]
   ];
-  public $CoE = ["Australia",
-                 "Germany",
-                 "Greenland",
-                 "Africa",
-                 "United States",
-                 "Russia"];
-  public $expedition = ["Alice Springs",
-                        "Bad Kissingen",
-                        "Berlin",
-                        "Kangerlussuaq",
-                        "Kazumba",
-                        "Los Angeles, California",
-                        "Mwanza",
-                        "Qeqertarsuatsiaat",
-                        "Samburg",
-                        "San Diego, California",
-                        "Snezhngorsk",
-                        "Yulara"];
+  public $CoE = ["AU",
+                 "DE",
+                 "GL",
+                 "CF",
+                 "US",
+                 "RU"];
+  public $expedition = ["ALICES",
+                        "BADKIS",
+                        "BERLIN",
+                        "KANGER",
+                        "KAZUMB",
+                        "LOSANG",
+                        "MWANZA",
+                        "QEQERT",
+                        "SAMBUR",
+                        "SANDIE",
+                        "SNEZHN",
+                        "YULARA"];
 
   public function Display(){
     $this -> DisplayHead(); // includes all meta information including site title and page names
@@ -120,10 +120,10 @@ Class MyAccountPage extends Page{
   public function AddReview($user, $CoE, $expedition){
     ?>
     <div class="add-review">
-      <form id="add-review" action="addreview.php" method="post">
+      <form id="add-review" action="includes/addreview.php" method="post">
         <div class="form-group">
           <label for="expeditionCountry">Select a Country:</label>
-          <select class="form-control" id="expeditionCountry" onchange="showExpeditions(this.value);">
+          <select class="form-control" id="expeditionCountry" name="country" onchange="showExpeditions(this.value);">
             <option>Select an option</option>
             <? for($c=0; $c<count($CoE); $c++){
                 echo "<option value='".$CoE[$c]."'>".$CoE[$c]."</option>";
@@ -132,7 +132,7 @@ Class MyAccountPage extends Page{
         </div>
         <div class="form-group expedition-selector">
           <label for="expedition">Select an Expedition:</label>
-          <select class="form-control" id="expedition">
+          <select name="expedition" class="form-control" id="expedition">
             <option>Select an option</option>
             <? for($e=0; $e<count($expedition); $e++){
                 echo "<option value='".$expedition[$e]."'>".$expedition[$e]."</option>";
@@ -160,8 +160,8 @@ Class MyAccountPage extends Page{
         </div>
         <input type="date" id="date-reviewed" name="date-reviewed" value="<?=date("Y/m/d");?>" hidden />
         <br />
-        <div class="container" id="submit">
-          <button type="submit">Update Profile</button>
+        <div class="container" id="submit" >
+          <button type="submit" name="addreview" value="addreview">Update Profile</button>
         </div>
         <div class="container" id="cancel">
           <div onclick="$('.add-review').fadeOut();">Cancel</div>

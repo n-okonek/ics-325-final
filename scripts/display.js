@@ -15,34 +15,34 @@ function showExpeditions(value){
   $('#expedition, #journeyExpedition').find('option:first').attr('selected', 'selected');
   $('.expedition-selector').fadeIn();
   switch (value){
-    case 'Australia':
+    case 'AU':
       $('#expedition > option, #journeyExpedition > option').hide();
-      $('option[value="Alice Springs"], option[value="Yulara"]').show();
+      $('option[value="ALICES"], option[value="YULARA"]').show();
       break;
     
-    case 'Germany':
+    case 'DE':
       $('#expedition > option, #journeyExpedition > option').hide();
-      $('option[value="Bad Kissingen"], option[value="Berlin"]').show();
+      $('option[value="BADKIS"], option[value="BERLIN"]').show();
       break;
 
-    case 'Greenland':
+    case 'GL':
       $('#expedition > option, #journeyExpedition > option').attr('hidden');
-      $('option[value="Kangerlussuaq"], option[value="Qeqertarsuatsiaat"]').removeAttr('hidden');
+      $('option[value="KANGER"], option[value="QEQERT"]').removeAttr('hidden');
       break;
 
-    case 'Africa':
+    case 'CF':
       $('#expedition > option, #journeyExpedition > option').addAttr('hidden');
-      $('option[value="Kazumba"], option[value="Mwanza"]').removeAttr('hidden');
+      $('option[value="KAZUMB"], option[value="MWANZA"]').removeAttr('hidden');
       break;
 
-    case 'United States':
+    case 'US':
       $('#expedition > option, #journeyExpedition > option').attr('hidden');
-      $('option[value="Los Angeles"], option[value="San Diego"]').removeAttr('hidden');
+      $('option[value="LOSANG"], option[value="SANDIE"]').removeAttr('hidden');
       break;
 
-    case 'Russia':
+    case 'RU':
       $('#expedition > option, #journeyExpedition > option').attr('hidden');
-      $('option[value="Samburg"], option[value="Snezhngorsk"]').removeAttr('hidden');
+      $('option[value="SAMBUR"], option[value="SNEZHN"]').removeAttr('hidden');
       break;
     default: 
       $('.expedition-selector').hide();
