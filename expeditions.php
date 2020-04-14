@@ -46,7 +46,7 @@ class MapPage extends Page{
             <button class="map-point" style="top:<?=$x?>%;left:<?=$y?>%">
               <div class='content'>
                 <div class='centered-y'>
-                  <h3><a href="./adventure.php#<?=$City_ID?>"><?=$City.", ".$Country?></h3>
+                  <h3><a href="./adventure.php?pid=<?=$City_ID?>"><?=$City.", ".$Country?></a></h3>
                   <p><?=$description?></p>
                 </div>
               </div>
