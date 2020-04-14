@@ -1,77 +1,68 @@
 <?php
 require("includes/page.php");
 
-$mappage = new Page();
 $ExpeditionHeadline = "{Location}"; //replace with SQL Query pull from expeditions table
 $ExpeditionSummary = "{ContentSummary}"; //replace with SQL Query pull from expeditions table
-$map = file_get_contents('img/map.php');
 
-$mappage->content ="
-<section class='map'>
-  <div class='distribution-map'>".$map."
-  <!-- buttons will need to be dynamically generated with php -->
-  <button class='map-point' style='top:15%;left:35%'>
-    <div class='content'>
-      <div class='centered-y'>
-      <h3><a href='./kangerlussuaq.php'>Kangerlussuaq, Greenland</a></h3>
-        <p>Some people enjoy a destination where safety and history meet.  Want to hike to see one of the worlds most beautiful glaciers? Kangerlussuaq is the place for you!</p>
-        <hr />
-        <h3><a href='./qeqertarsuatsiaat.php'>Qeqertarsuatsiaat, Greenland</a></h3>
-        <p>If you like a small-town getaway feel with treasure hunts and whales, then this is the location for you!</p>
-      </div>
-    </div>
-  </button>
-  <button class='map-point' style='top:35%;left:50%'>
-    <div class='content'>
-      <div class='centered-y'>
-        <h3><a href='./bad-kissingen.php'>Bad Kissingen, Germany</a></h3>
-        <p>I know what you may be thinking… does the name of this region really speak for the millions of kissers that live there?</p>
-        <hr />
-        <h3><a href='./berlin.php'>Berlin, Germany</a></h3>
-        <p>I know what you may be thinking… does the name of this region really speak for the millions of kissers that live there?</p>
-      </div>
-    </div>
-  </button>
-  <button class='map-point' style='top:76%;left:82.5%'>
-    <div class='content'>
-      <div class='centered-y'>
-        <h3>{Location}</h3>
-        <p>{Short location description}</p>
-        <!-- if more than one expedition
-        <hr />
-        -->
-      </div>
-    </div>
-  </button>
-  <button class='map-point' style='top:45%;left:16%'>
-    <div class='content'>
-      <div class='centered-y'>
-        <h3>".$ExpeditionHeadline."</h3>
-        <p>".$ExpeditionSummary."</p>
-      </div>
-    </div>
-  </button>
-  <button class='map-point' style='top:60%;left:53%'>
-    <div class='content'>
-      <div class='centered-y'>
-        <h3>".$ExpeditionHeadline."</h3>
-        <p>".$ExpeditionSummary."</p>
-      </div>
-    </div>
-  </button>
-  <button class='map-point' style='top:25%;left:70%'>
-    <div class='content'>
-      <div class='centered-y'>
-        <h3>".$ExpeditionHeadline."</h3>
-        <p>".$ExpeditionSummary."</p>
-      </div>
-    </div>
-  </button>
-</div>
-</section>
-";
 
-$credits = "Original map image and Sass Code by <a href='https://codepen.io/mirichan/pen/jEBmyG' target='_blank'>Michael Mroz</a>. Refactored to Less and PHP by Nick Okonek.";
+class MapPage extends Page{
+  public $credits = "Original map image and Sass Code by <a href='https://codepen.io/mirichan/pen/jEBmyG' target='_blank'>Michael Mroz</a>. Refactored to Less and PHP by Nick Okonek.";
+
+  public function Display($pageID){
+    $this -> DisplayHead(); // includes all meta information including site title and page names
+    $this -> DisplayBody();
+    $this -> DisplayHeader($this->buttons); //includes display menu
+    $this -> SetPageInfo($pageID);
+    $this -> DisplayMap();
+    echo $this->content;
+    $this -> DisplayFooter();
+  }
+
+  public function DisplayMap(){
+    $map = file_get_contents('img/map.php');
+
+    ?>
+    <section class='map'>
+      <div class='distribution-map'><?=$map?>
+      <? $this->displayMapPoints() ?>
+      </div>
+      </section>
+    <?php
+  }
+
+  public function displayMapPoints(){
+    $db = new mysqli('localhost', 'glazpmck_ics325_web', 'ICS325.01-2020', "glazpmck_ics325");
+    $query = "Select City.City_ID, City.CityName, City.Country, Country.CountryName, City.CityDescription, City.map_x, City.map_y
+    from City
+    Inner join country ON city.country=country.Country_ID;";
+    $stmt = $db->prepare($query);
+    $stmt->execute();
+    $stmt->store_result();
+    $stmt->bind_result($City_ID, $City, $countryID, $Country, $description, $x, $y);
+    
+    if ($stmt->num_rows > 0){
+      while ($stmt->fetch()){
+          ?>
+            <button class="map-point" style="top:<?=$x?>%;left:<?=$y?>%">
+              <div class='content'>
+                <div class='centered-y'>
+                  <h3><a href="./adventure.php#<?=$City_ID?>"><?=$City.", ".$Country?></h3>
+                  <p><?=$description?></p>
+                </div>
+              </div>
+            </button>
+          <?php
+      }
+    }
+  
+    $stmt ->free_result();
+    $db->close();
+  }
+
+}
+$mappage = new MapPage();
+
+$mappage->content ="";
 
 $mappage->Display(3);
 ?>
