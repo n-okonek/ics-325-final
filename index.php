@@ -16,11 +16,11 @@ class Homepage extends Page{
 
   public function DisplayReviews(){
     $db = new mysqli('localhost', 'glazpmck_ics325_web', 'ICS325.01-2020', "glazpmck_ics325");
-    $query = "SELECT Location_ID, Rating, Review, User_ID FROM reviewlist LIMIT 3";
+    $query = "SELECT User_ID, Rating, Review FROM reviewlist LIMIT 3";
     $stmt = $db->prepare($query);
     $stmt->execute();
     $stmt->store_result();
-    $stmt->bind_result($headline, $rating, $rContent, $User_ID);
+    $stmt->bind_result($headline, $rating, $rContent);
         
     echo "<section class='top-reviews'>";
 
@@ -36,9 +36,10 @@ class Homepage extends Page{
     <?php
     }
 
+    echo "</section>";
+
     $stmt->free_result();
     $db->close();
-    echo "</section>";
   }
 }
 
