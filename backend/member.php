@@ -37,8 +37,9 @@ class Member
             $user = $_SESSION["userId"];
             return true;
         }
-
     }
+
+    public function updateUser(){}
 
 }
 ?>
