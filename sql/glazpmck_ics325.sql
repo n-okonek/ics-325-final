@@ -1,5 +1,3 @@
-CREATE DATABASE  IF NOT EXISTS `glazpmck_ics325` /*!40100 DEFAULT CHARACTER SET utf8 */ /*!80016 DEFAULT ENCRYPTION='N' */;
-USE `glazpmck_ics325`;
 -- MySQL dump 10.13  Distrib 8.0.19, for Win64 (x86_64)
 --
 -- Host: 127.0.0.1    Database: glazpmck_ics325
@@ -112,16 +110,15 @@ CREATE TABLE `location` (
   `location_ID` varchar(6) NOT NULL,
   `LocationName` varchar(32) NOT NULL,
   `LocationType` varchar(24) NOT NULL,
-  `MapCoord_x` decimal(8,5) DEFAULT NULL,
-  `MapCoord_y` decimal(8,5) DEFAULT NULL,
   `Country_ID` varchar(2) NOT NULL,
-  `State_ID` varchar(6) NOT NULL,
+  `State_ID` int NOT NULL,
   `City_ID` int NOT NULL,
   PRIMARY KEY (`location_ID`),
-  KEY `State_ID` (`State_ID`),
+  KEY `State_ID_idx` (`State_ID`),
   KEY `Country_ID` (`Country_ID`),
-  CONSTRAINT `location_ibfk_1` FOREIGN KEY (`State_ID`) REFERENCES `state` (`State_ID`),
-  CONSTRAINT `location_ibfk_2` FOREIGN KEY (`Country_ID`) REFERENCES `country` (`Country_ID`)
+  KEY `City_ID_idx` (`City_ID`),
+  CONSTRAINT `Country_ID` FOREIGN KEY (`Country_ID`) REFERENCES `country` (`Country_ID`),
+  CONSTRAINT `State_ID` FOREIGN KEY (`State_ID`) REFERENCES `state` (`State_ID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -131,7 +128,7 @@ CREATE TABLE `location` (
 
 LOCK TABLES `location` WRITE;
 /*!40000 ALTER TABLE `location` DISABLE KEYS */;
-INSERT INTO `location` VALUES ('BB0001','Brats and Krauts','Food',35.00000,50.00000,'DE','BAVARI',8),('BB0002','Techno House','Venue',35.00000,50.00000,'DE','BAVARI',8),('KK0001','Albatros Artic Circle','Tours',35.00000,15.00000,'GL','KINGDE',6),('KK0002','Muskox','Food',35.00000,15.00000,'GL','KINGDE',6),('TD0001','Dallas Museum Of Art','Education',45.00000,16.00000,'US','TEXAS',18),('TD0002','AT&T Stadium','Sports',45.00000,16.00000,'US','TEXAS',18);
+INSERT INTO `location` VALUES ('BB0001','Brats and Krauts','Food','DE',1,8),('BB0002','Techno House','Venue','DE',1,8),('KK0001','Albatros Artic Circle','Tours','GL',2,7),('KK0002','Muskox','Food','GL',2,7),('TD0001','Rainbow Bar','Food','US',3,12),('TD0002','Venus Beach','Outdoors','US',3,12);
 /*!40000 ALTER TABLE `location` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -143,14 +140,14 @@ DROP TABLE IF EXISTS `reviewlist`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `reviewlist` (
+  `ReviewID` int NOT NULL AUTO_INCREMENT,
   `User_ID` int NOT NULL,
   `Rating` int NOT NULL,
   `ReviewType` varchar(24) NOT NULL,
   `Review` text,
   `ReviewHeadline` text,
   `Country` varchar(2) DEFAULT NULL,
-  `City` varchar(6) DEFAULT NULL,
-  `ReviewID` int NOT NULL AUTO_INCREMENT,
+  `City` int DEFAULT NULL,
   PRIMARY KEY (`ReviewID`),
   KEY `Country_idx` (`Country`),
   CONSTRAINT `Country` FOREIGN KEY (`Country`) REFERENCES `country` (`Country_ID`)
@@ -163,7 +160,7 @@ CREATE TABLE `reviewlist` (
 
 LOCK TABLES `reviewlist` WRITE;
 /*!40000 ALTER TABLE `reviewlist` DISABLE KEYS */;
-INSERT INTO `reviewlist` VALUES (200000,2,'Expedition','Hated it. Shitty DJ',NULL,NULL,NULL,1),(200001,5,'Location','The Techno house was a way cooler place to hang-out then I though, the back bar that was an old tank was AMAZEBALLS',NULL,NULL,NULL,2),(200002,3,'Location','Garbage ass texas, get me outta here! Anything would be better than this boring as stadium',NULL,NULL,NULL,3);
+INSERT INTO `reviewlist` VALUES (1,200000,2,'Expedition','Hated it. Shitty DJ','Whales are good MMk...','GL',7),(2,200001,5,'Location','The Techno house was a way cooler place to hang-out then I though, the back bar that was an old tank was AMAZEBALLS','Hit a wall...','DE',8),(3,200002,3,'Location','I am bummed that I missed Lemmy playing his poker game','Rainbow bar','US',12);
 /*!40000 ALTER TABLE `reviewlist` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -232,13 +229,13 @@ DROP TABLE IF EXISTS `state`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `state` (
-  `State_ID` varchar(6) NOT NULL,
+  `State_ID` int NOT NULL AUTO_INCREMENT,
   `StateName` varchar(32) NOT NULL,
   `Country_ID` varchar(2) NOT NULL,
   PRIMARY KEY (`State_ID`),
   KEY `Country_ID` (`Country_ID`),
   CONSTRAINT `state_ibfk_1` FOREIGN KEY (`Country_ID`) REFERENCES `country` (`Country_ID`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -247,7 +244,7 @@ CREATE TABLE `state` (
 
 LOCK TABLES `state` WRITE;
 /*!40000 ALTER TABLE `state` DISABLE KEYS */;
-INSERT INTO `state` VALUES ('BAVARI','Bavaria','DE'),('KINGDE','Kingdom of Denmark','GL'),('TEXAS','Texas','US');
+INSERT INTO `state` VALUES (1,'Bavaria','DE'),(2,'Kingdom of Denmark','GL'),(3,'Texas','US');
 /*!40000 ALTER TABLE `state` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -289,4 +286,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-04-14 21:39:38
+-- Dump completed on 2020-04-15 16:59:42
