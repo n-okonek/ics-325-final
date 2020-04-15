@@ -16,11 +16,16 @@ class Homepage extends Page{
 
   public function DisplayReviews(){
     $db = new mysqli('localhost', 'glazpmck_ics325_web', 'ICS325.01-2020', "glazpmck_ics325");
-    $query = "SELECT User_ID, Rating, Review FROM reviewlist LIMIT 3";
+    $query = "SELECT reviewlist.ReviewHeadline, reviewlist.Review, reviewlist.User_ID, users.fname, reviewlist.country, country.countryname, reviewlist.city, city.cityname, reviewlist.rating 
+    FROM reviewlist
+    inner join country on reviewlist.country = country.country_ID
+    inner join city on reviewlist.city = city.city_id
+    inner join users on reviewlist.user_id = users.user_ID
+    ORDER BY RAND () LIMIT 3;";
     $stmt = $db->prepare($query);
     $stmt->execute();
     $stmt->store_result();
-    $stmt->bind_result($headline, $rating, $rContent);
+    $stmt->bind_result($headline, $review, $uid, $name, $cid1, $country, $cid2, $city, $rating);
         
     echo "<section class='top-reviews'>";
 
@@ -29,8 +34,8 @@ class Homepage extends Page{
       <div class='top-review'>
         <div class='review-content'>
         <!-- change variables to array pointers -->
-        <h3><?=$headline?></h3> 
-        <p><?=$rContent?></p>
+        <h3><?=$headline?> - <?=$rating?>/5</h3> 
+        <p><?= $city.", ".$country?><br /><?=$review?></p><p>- <?=$name?></p>
       </div>
     </div>
     <?php
