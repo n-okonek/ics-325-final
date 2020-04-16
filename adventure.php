@@ -41,7 +41,7 @@ class AdventurePage extends Page{
       ?>
       <div class='top-review'>
         <div class='review-content'>
-          <h3><?=$headline?> - <?=$rating?>/5</h3> 
+          <h4><?=$headline?> - <?=$rating?>/5</h4> 
           <p><?= $city.", ".$country?><br /><?=$review?></p><p>- <?=$name?></p>
         </div>
       </div>
