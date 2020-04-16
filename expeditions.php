@@ -1,10 +1,6 @@
 <?php
 require("includes/page.php");
 
-$ExpeditionHeadline = "{Location}"; //replace with SQL Query pull from expeditions table
-$ExpeditionSummary = "{ContentSummary}"; //replace with SQL Query pull from expeditions table
-
-
 class MapPage extends Page{
   public $credits = "Original map image and Sass Code by <a href='https://codepen.io/mirichan/pen/jEBmyG' target='_blank'>Michael Mroz</a>. Refactored to Less and PHP by Nick Okonek.";
 

@@ -21,13 +21,14 @@ class AdventurePage extends Page{
     }
     
     $id = $db->real_escape_string($_GET['pid']);
-    $query = "SELECT reviewlist.ReviewHeadline, reviewlist.Review, reviewlist.User_ID, users.fname, reviewlist.city, reviewlist.rating 
+    $query = "SELECT reviewlist.ReviewID, reviewlist.ReviewHeadline, reviewlist.Review, reviewlist.User_ID, users.fname, reviewlist.city, reviewlist.rating 
     FROM reviewlist
     INNER JOIN users ON reviewlist.user_id = users.user_ID
     INNER JOIN sitemap ON reviewlist.City = sitemap.pageID
     WHERE reviewlist.city = '$id'";
     $result = $db->query($query);
     $row=$result->fetch_array(MYSQLI_ASSOC);
+    $num_rows=$result->num_rows;
     ?>
     
     <section class='reviews'>
@@ -35,24 +36,29 @@ class AdventurePage extends Page{
     
     <?php
     
-    echo "<section class='top-reviews'>";
-
-    while ($row){
-      ?>
-      <div class='top-review'>
-        <div class='review-content'>
-          <h4><?=$headline?> - <?=$rating?>/5</h4> 
-          <p><?= $city.", ".$country?><br /><?=$review?></p><p>- <?=$name?></p>
+    if ($num_rows > 0){
+      for ($x=0; $x<$num_rows; $x++){
+        ?>
+        <div class='top-review'>
+          <div class='review-content'>
+            <h4><?=$row['ReviewHeadline']?> - <?=$row['rating']?>/5</h4> 
+            <p><?=$row['Review']?></p><p>- <?=$row['fname']?></p>
+          </div>
         </div>
-      </div>
+        <?php
+      }
+    }else{
+      ?>
+        <div class='top-review'>
+          <div class='review-content'>
+            <h4>No reviews yet!</h4>
+          </div>
+        </div>
       <?php
     }
 
     echo "</section>";
-
-  $stmt->free_result();
-  $db->close();
-}
+  }
 
   public function DisplayContent(){
     if (isset($_GET['pid'])){
