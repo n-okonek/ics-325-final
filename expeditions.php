@@ -5,6 +5,7 @@ class MapPage extends Page{
   public $credits = "Original map image and Sass Code by <a href='https://codepen.io/mirichan/pen/jEBmyG' target='_blank'>Michael Mroz</a>. Refactored to Less and PHP by Nick Okonek.";
 
   public function Display($pageID){
+    session_start();
     $this -> DisplayHead(); // includes all meta information including site title and page names
     $this -> DisplayBody();
     $this -> DisplayHeader($this->buttons); //includes display menu

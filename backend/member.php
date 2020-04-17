@@ -1,4 +1,5 @@
 <?php
+session_start();
 
 class Member
 {
@@ -11,17 +12,17 @@ class Member
 
     public function processLogin($username, $password) {
         $passwordHash = md5($password);
-        $query = "SELECT * FROM users WHERE Email = ? AND Psword = ?";
-        $stmt = $this->db->prepare($query);
-        $stmt->bind_param("ss", $username, $passwordHash);
-        $stmt->execute();
-        $stmt->store_result();
-        $stmt->bind_result($user);
-
-        if(!empty($user)) {
-            $_SESSION["userId"] = $user;
+        $query = "SELECT * FROM users WHERE Email = '$username' AND Psword = '$passwordHash'";
+        $result = $this->db->query($query);
+        //$result->bind_param("ss", $username, $passwordHash);
+        $row=$result->fetch_array(MYSQLI_ASSOC);
+        
+        if($result->num_rows){
+            $_SESSION['user'] = $row['FName'];
             return true;
         }
+        $this->db->close();
+
     }
 
     public function createUser($fname, $lname, $email, $pw, $dob, $coo){

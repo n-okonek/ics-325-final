@@ -1,10 +1,10 @@
 <?php
+session_start();
 require("includes/page.php");
 $BgImg = "marley_resort.jpg"; //replace with SQL Query
 $BgImgAlt = "Bob Marley Resort, Nasau, Bahamas"; //replace with SQL Query
 
 Class MyAccountPage extends Page{
-  public $user = "UserName"; //replace with SQL query from user table
   public $countries = [["US", "United States"],
                        ["UM", "United States Minor Outlying Islands"]
   ];
@@ -27,7 +27,7 @@ Class MyAccountPage extends Page{
                         "SNEZHN",
                         "YULARA"];
 
-  public function Display(){
+  public function Display($pageID){
     $this -> DisplayHead(); // includes all meta information including site title and page names
     $this -> DisplayBody();
     $this -> DisplayHeader($this->buttons); //includes display menu
@@ -37,7 +37,7 @@ Class MyAccountPage extends Page{
     $this -> DisplayWanderlust();
     $this -> DisplayFooter();
     $this -> UpdateUserForm($this->countries);
-    $this -> AddReview($this->user, $this->CoE, $this->expedition);
+    $this -> AddReview($this->CoE, $this->expedition);
     $this -> AddJourney($this->CoE, $this->expedition);
   }
 
@@ -117,7 +117,7 @@ Class MyAccountPage extends Page{
     <?php
   }
 
-  public function AddReview($user, $CoE, $expedition){
+  public function AddReview($CoE, $expedition){
     ?>
     <div class="add-review">
       <form id="add-review" action="includes/addreview.php" method="post">
@@ -233,9 +233,9 @@ $account->content ="
 </div>
 
 <section class='page-title'>
-<h2> Welcome".$user."</h2>
+<h2> Welcome ".$_SESSION['user']."</h2>
 </section>";
 
-$account -> Display();
+$account -> Display(6);
 
 ?>

@@ -1,5 +1,5 @@
 <?php
-
+session_start();
   class Page{
     public $content;
     public $title = "Wanderlust Outpost";

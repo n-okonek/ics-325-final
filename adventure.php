@@ -4,6 +4,7 @@ require("includes/page.php");
 class AdventurePage extends Page{
 
   public function Display($pageID){
+    session_start();
     $this -> DisplayHead(); // includes all meta information including site title and page names
     $this -> DisplayBody();
     $this -> DisplayHeader($this->buttons); //includes display menu
