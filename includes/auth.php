@@ -12,12 +12,15 @@ if (!(empty($_POST["userName"]) && empty($_POST["pswd"]))) {
     $isLoggedIn = $member->processLogin($username, $password);
 
     if ($isLoggedIn) {
+        $_SESSION["LoggedIn"] = true;
         header("Location: ../account.php");
     }else{
         $_SESSION["errorMessage"] = "Invalid Credentials";
+        header("Location: ../login.php", true, 403);
     }
 }else{
     $_SESSION["errorMessage"] = "Credentials Missing";
+    header("Location: ../login.php", true, 403);
 } 
 
 ?>

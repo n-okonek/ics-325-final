@@ -1,6 +1,6 @@
 <?php
-session_start();
-  class Page{
+
+class Page{
     public $content;
     public $title = "Wanderlust Outpost";
     public $buttons = ["Home" => "index.php",
@@ -83,11 +83,12 @@ session_start();
     }
 
     public function DisplayHeader($buttons){
-      $loggedIn = false;
-      $button2 = ["Login" => "login.php",
-                  "My Account" => "myaccount.php",
-                  "Logout" => "logout.php"];
+      $db = new mysqli('localhost', 'glazpmck_ics325_web', 'ICS325.01-2020', "glazpmck_ics325");
+      $nav_sql = "SELECT * FROM sitemap WHERE NavItem = 1";
+      $nav_query = $db->query($nav_sql);
+      $nav_rs=$nav_query->fetch_array(MYSQLI_ASSOC);
       ?>
+      
       <header>
         <h1><?php echo $this->title; ?></h1>
         <!-- mobile menu -->
@@ -96,15 +97,9 @@ session_start();
               <span>
                 <ul class="sub-menu">
                   <?php
-                    while ( list($name, $url) = each($buttons) ){
-                      $this->DisplayButton($name, $url);
-                    }
-                    if (!$loggedIn){ ?>
-                      <li>
-                        <a href="./<?=$button2["Login"]?>" title="Login">Login</a>
-                      </li>
-                      <?php
-                    }
+                    do{
+                      $this->DisplayButton($nav_rs['PageName'], $nav_rs['pageID'], $nav_rs['url']);
+                    } while($nav_rs=$nav_query->fetch_array(MYSQLI_ASSOC));
                     ?>
                 </ul>
               </span>
@@ -115,12 +110,49 @@ session_start();
       <?php
     }
 
-    public function DisplayButton($name, $url){
-      ?>
+    public function DisplayButton($name, $pageID, $url){
+      if (empty($_SESSION['LoggedIn'])){
+        $loggedIn=false;
+      }else {
+        $loggedIn = $_SESSION['LoggedIn'];
+      }
+
+      if ( $pageID == 1 || $pageID == 2 || $pageID == 3 ){
+        ?>
         <li>
-          <a href="./<?=$url?>" title="<?=$name ?>"><?=$name?></a>
+          <a href="./<?=$url?>.php" title="<?=$name ?>"><?=$name?></a>
         </li>
       <?php
+      }
+
+      if ($pageID == 4){
+        if ($loggedIn){
+          return;
+        }else{
+          ?>
+          <li>
+            <a href="./<?=$url?>.php" title="<?=$name ?>"><?=$name?></a>
+          </li>
+        <?php
+        }
+      }
+
+      if ( $pageID == 5){
+        return;
+      }
+
+      if ( $pageID == 6 ){
+        if ($loggedIn){
+          ?>
+            <li>
+              <a href="./<?=$url?>.php" title="<?=$name ?>"><?=$name?></a>
+            </li>
+            <li>
+              <a href="./logout.php" title="Log Out">Log Out</a>
+            </li>
+          <?php
+        }else{return;}
+      }
     }
 
     public function SetPageInfo($pageID){
@@ -161,7 +193,7 @@ session_start();
           }
         break;
 
-        case ($pageID = 4 || $pageID =5):
+        case ($pageID = 4 || $pageID = 5):
           while($stmt->fetch()){
             ?>
               <section class="page-title">

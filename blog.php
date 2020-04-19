@@ -1,4 +1,5 @@
 <?php
+session_start();
 require("includes/page.php");
 
 $blogpage = new Page();
