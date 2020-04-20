@@ -2,9 +2,6 @@
 require("includes/page.php");
 
 Class RegistrationPage extends Page{
-  public $countries = [["US", "United States"],
-                       ["UM", "United States Minor Outlying Islands"]
-                      ];
 
   public function Display($pageID){
     $this -> DisplayHead(); // includes all meta information including site title and page names
@@ -12,11 +9,16 @@ Class RegistrationPage extends Page{
     $this -> DisplayHeader($this->buttons); //includes display menu
     $this -> SetPageInfo($pageID);
     echo $this->content;
-    $this->DisplayRegForm($this->countries);
+    $this->DisplayRegForm();
     $this -> DisplayFooter();
   }
 
-  public function DisplayRegForm($countries){
+  public function DisplayRegForm(){
+    $db = new mysqli('localhost', 'glazpmck_ics325_web', 'ICS325.01-2020', "glazpmck_ics325");
+    $cs_sql = "SELECT * FROM country";
+    $cs_query = $db->query($cs_sql);
+    $cs_rs=$cs_query->fetch_array(MYSQLI_ASSOC);
+    
     ?>
   <form id="regform" action="./includes/newuser.php" method="post">
   <?php
@@ -48,9 +50,9 @@ Class RegistrationPage extends Page{
       <label for="origin">What country are you from?</label>
       <select class="form-control" id="origin" name='origin'>
         <?php
-          for ($c=0; $c < count($countries); $c++){
-            echo "<option value='".$countries[$c][0]."'>".$countries[$c][1]."</option>";
-          }
+          do {
+            echo "<option value='".$cs_rs['Country_ID']."'>".$cs_rs['CountryName']."</option>";
+          } while($cs_rs=$cs_query->fetch_array(MYSQLI_ASSOC));
         ?>
       </select>
       </br>
