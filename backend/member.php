@@ -19,6 +19,11 @@ class Member
         
         if($result->num_rows){
             $_SESSION['user'] = $row['FName'];
+            $_SESSION['MemberName'] = $row['FName']." ".$row['LName'];
+            $_SESSION['MemberSince'] = $row['AccountCreated'];
+            $_SESSION['Email'] = $row['Email'];
+            $_SESSION['DOB'] = $row['DOB'];
+            $_SESSION['Country'] = $row['Origin'];
             return true;
         }
         $this->db->close();

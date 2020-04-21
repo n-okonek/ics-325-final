@@ -1,5 +1,12 @@
 <?php
 session_start();
+
+if (empty($_SESSION['LoggedIn'])){
+  $_SESSION["errorMessage"] = "We were not able to identify your account, please log in.";
+  header("Location: ./login.php");
+}
+
+else{
 require("includes/page.php");
 $BgImg = "marley_resort.jpg"; //replace with SQL Query
 $BgImgAlt = "Bob Marley Resort, Nasau, Bahamas"; //replace with SQL Query
@@ -27,10 +34,14 @@ Class MyAccountPage extends Page{
                         "SNEZHN",
                         "YULARA"];
 
+  private $db;
+
   public function Display($pageID){
+
     $this -> DisplayHead(); // includes all meta information including site title and page names
     $this -> DisplayBody();
     $this -> DisplayHeader($this->buttons); //includes display menu
+    $this -> SetPageInfo($pageID);
     echo $this->content;
     $this -> DisplayAccountInfo();
     $this -> DisplayExpeditions();
@@ -47,11 +58,11 @@ Class MyAccountPage extends Page{
       <div class="account-panel">
         <h3><?php echo "Account Information"?></h3>
         <div class ="accountInfo">
-            <p><?php echo "Member name:"."{account name}" ?></p>
-            <p><?php echo "Wanderer since:"."{account creation date}"  ?></p>
-            <p><?php echo "Email:"."{email}" ?></p>
-            <p><?php echo "Birthday:"."{dob}" ?></p>
-            <p><?php echo "Country:"."{country}" ?></p>
+            <p><?php echo "Member name: ".$_SESSION['MemberName'] ?></p>
+            <p><?php echo "Wanderer since: ".$_SESSION['MemberSince']  ?></p>
+            <p><?php echo "Email: ".$_SESSION['Email'] ?></p>
+            <p><?php echo "Birthday: ".$_SESSION['DOB'] ?></p>
+            <p><?php echo "Country: ".$_SESSION['Country'] ?></p>
         </div>
         <div class="container" id="submit">
             <button type="submit" onclick="updateUser();">Update Profile</button>
@@ -61,6 +72,7 @@ Class MyAccountPage extends Page{
   }
 
   public function UpdateUserForm($countries){
+
     ?>
     <div class="update-user">
   <form id="update-user" action="userupdate.php" method="post">
@@ -103,7 +115,7 @@ Class MyAccountPage extends Page{
     ?>
       <!--  My Expeditions section -->
       <div class="expedition-panel">
-        <h3><?php echo "My Expeditions"?></h3>
+        <h3><?php echo "Reviews I've Written"?></h3>
         <div class="myExpeditions">
           <h4><?php echo "{destination tag}"?></h4>
           <h4><?php echo "{excursion tag}"?></h4> 
@@ -175,7 +187,7 @@ Class MyAccountPage extends Page{
     ?>
       <!-- WanderlustSection --> 
       <div class="wanderlust-panel">
-        <h3><?php echo "Wanderlust"?></h3>
+        <h3><?php echo "Destinations to Visit"?></h3>
         <div class="wanderlust">
           <h4><?php echo "{destination tag}"?></h4>
           <h4><?php echo "{excursion tag}"?></h4> 
@@ -227,15 +239,7 @@ Class MyAccountPage extends Page{
 
 $account = new MyAccountPage();
 
-$account->content ="
-<div class='account-img'>
-<img src='img/".$BgImg."' alt='".$BgImgAlt."' />
-</div>
-
-<section class='page-title'>
-<h2> Welcome ".$_SESSION['user']."</h2>
-</section>";
+$account->content ="";
 
 $account -> Display(6);
-
-?>
+}

@@ -266,8 +266,11 @@ CREATE TABLE `users` (
   `LName` varchar(24) NOT NULL,
   `Psword` varchar(42) NOT NULL,
   `DOB` date NOT NULL,
-  `Origin` varchar(48) DEFAULT NULL,
-  PRIMARY KEY (`User_ID`)
+  `Origin` varchar(2) DEFAULT NULL,
+  `AccountCreated` datetime DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`User_ID`),
+  KEY `Origin_idx` (`Origin`),
+  CONSTRAINT `Origin` FOREIGN KEY (`Origin`) REFERENCES `country` (`Country_ID`)
 ) ENGINE=InnoDB AUTO_INCREMENT=200003 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -277,7 +280,7 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES (200000,'mikekn@gmail.com','Mike','Kn','p@ssw0rd','1989-09-09','USA'),(200001,'meygansc@yahoo.com','Meygan','Sc','123098','1990-10-10','Merica'),(200002,'nickok@mail.net','Nick','Ok','7938b5a64decef3875c670fc140b0527','1991-11-11','The US of A');
+INSERT INTO `users` VALUES (200000,'mikekn@gmail.com','Mike','Kn','p@ssw0rd','1989-09-09','US','2020-04-21 10:20:02'),(200001,'meygansc@yahoo.com','Meygan','Sc','123098','1990-10-10','US','2020-04-21 10:20:02'),(200002,'nickok@mail.net','Nick','Ok','7938b5a64decef3875c670fc140b0527','1991-11-11','US','2020-04-21 10:20:02');
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -290,4 +293,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-04-19 15:45:45
+-- Dump completed on 2020-04-21 10:33:49

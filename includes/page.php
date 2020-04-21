@@ -1,5 +1,4 @@
 <?php
-
 class Page{
     public $content;
     public $title = "Wanderlust Outpost";
@@ -193,7 +192,7 @@ class Page{
           }
         break;
 
-        case ($pageID = 4 || $pageID = 5):
+        case ($pageID == 4 || $pageID == 5):
           while($stmt->fetch()){
             ?>
               <section class="page-title">
@@ -205,6 +204,20 @@ class Page{
                 <!-- just pic for reference  -->
                   <img src="img/<?=$BGImg?>" alt="<?=$BGImgAlt?>" />
                 </div>
+            <?php
+          }
+        break;
+
+        case 6:
+          while ($stmt -> fetch()){
+            ?>
+              <div class="account-img">
+                <img src="img/<?=$BGImg?>" alt="<?=$BGImgAlt?>" />
+              </div>
+
+              <section class='page-title'>
+                <h2> Welcome <?=$_SESSION['user']?></h2>
+              </section>
             <?php
           }
         break;
