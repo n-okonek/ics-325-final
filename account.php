@@ -36,8 +36,12 @@ Class MyAccountPage extends Page{
 
   private $db;
 
-  public function Display($pageID){
+  function __construct()
+  {
+      $this->db = new mysqli('localhost', 'glazpmck_ics325_web', 'ICS325.01-2020', 'glazpmck_ics325' );
+  }
 
+  public function Display($pageID){
     $this -> DisplayHead(); // includes all meta information including site title and page names
     $this -> DisplayBody();
     $this -> DisplayHeader($this->buttons); //includes display menu
@@ -72,7 +76,9 @@ Class MyAccountPage extends Page{
   }
 
   public function UpdateUserForm($countries){
-
+    $cs_sql = "SELECT * FROM country";
+    $cs_query = $this->db->query($cs_sql);
+    $cs_rs=$cs_query->fetch_array(MYSQLI_ASSOC);
     ?>
     <div class="update-user">
   <form id="update-user" action="userupdate.php" method="post">
@@ -92,10 +98,11 @@ Class MyAccountPage extends Page{
       </br>
       <label for="origin">What country are you from?</label>
       <select class="form-control" class id="origin">
-        <?php
-          for ($c=0; $c < count($countries); $c++){
-            echo "<option value='".$countries[$c][0]."'>".$countries[$c][1]."</option>";
-          }
+      <?php
+          do {
+            echo "<option value='".$cs_rs['Country_ID']."'>".$cs_rs['CountryName']."</option>";
+          } while($cs_rs=$cs_query->fetch_array(MYSQLI_ASSOC));
+          $this->db->close();
         ?>
       </select>
       </br>
@@ -112,16 +119,33 @@ Class MyAccountPage extends Page{
   }
 
   public function DisplayExpeditions(){
+    $userID = $_SESSION['userID'];
+    $reviews_sql = "SELECT reviewlist.User_ID, reviewlist.rating, reviewlist.Review, reviewlist.ReviewHeadline, reviewlist.DateAdded, city.CityName, country.CountryName 
+    FROM reviewlist
+    LEFT JOIN (users, city, country)
+    ON (users.User_ID=reviewlist.User_ID 
+    AND city.City_ID=reviewlist.City 
+    AND country.Country_ID = reviewlist.Country)
+    WHERE reviewlist.User_ID = '$userID'";
+    $reviews_rs = $this->db->query($reviews_sql);
+    $row=$reviews_rs->fetch_array(MYSQLI_ASSOC);
     ?>
       <!--  My Expeditions section -->
       <div class="expedition-panel">
         <h3><?php echo "Reviews I've Written"?></h3>
-        <div class="myExpeditions">
-          <h4><?php echo "{destination tag}"?></h4>
-          <h4><?php echo "{excursion tag}"?></h4> 
-          <p><?php echo "{date added}"?></p>
-          <p><?php echo "{review or rating}"?>
-        </div>
+        <?php
+          do{
+            ?>
+            <div class="myExpeditions">
+              <h4><?=$row['CityName'].", ".$row['CountryName']?></h4>
+              <h4><?=$row['ReviewHeadline']?></h4> 
+              <p>Review added on <?=$row['DateAdded']?></p>
+              <p>Review Text: <?=$row['Review']?></p>
+              <p>Rating: <?=$row['rating']?>/5</p>
+            </div>
+            <?php
+          } while($row = $reviews_rs->fetch_array(MYSQLI_ASSOC));
+          ?>
         <div class="container" id="submit">
           <button type="submit" onclick="addReview();">Add Review</button>
         </div>    

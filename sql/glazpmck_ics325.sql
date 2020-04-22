@@ -150,6 +150,7 @@ CREATE TABLE `reviewlist` (
   `ReviewHeadline` text,
   `Country` varchar(2) DEFAULT NULL,
   `City` int DEFAULT NULL,
+  `DateAdded` datetime DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`ReviewID`),
   KEY `Country_idx` (`Country`),
   CONSTRAINT `Country` FOREIGN KEY (`Country`) REFERENCES `country` (`Country_ID`)
@@ -162,7 +163,7 @@ CREATE TABLE `reviewlist` (
 
 LOCK TABLES `reviewlist` WRITE;
 /*!40000 ALTER TABLE `reviewlist` DISABLE KEYS */;
-INSERT INTO `reviewlist` VALUES (1,200000,2,'Expedition','Hated it. Shitty DJ','Whales are good MMk...','GL',7),(2,200001,5,'Location','The Techno house was a way cooler place to hang-out then I though, the back bar that was an old tank was AMAZEBALLS','Hit a wall...','DE',8),(3,200002,3,'Location','I am bummed that I missed Lemmy playing his poker game','Rainbow bar','US',12);
+INSERT INTO `reviewlist` VALUES (1,200000,2,'Expedition','Hated it. Shitty DJ','Whales are good MMk...','GL',7,'2020-04-22 10:01:59'),(2,200001,5,'Location','The Techno house was a way cooler place to hang-out then I though, the back bar that was an old tank was AMAZEBALLS','Hit a wall...','DE',8,'2020-04-22 10:01:59'),(3,200002,3,'Location','I am bummed that I missed Lemmy playing his poker game','Rainbow bar','US',12,'2020-04-22 10:01:59');
 /*!40000 ALTER TABLE `reviewlist` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -293,4 +294,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-04-21 10:33:49
+-- Dump completed on 2020-04-22 10:10:55

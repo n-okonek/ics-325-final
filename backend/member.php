@@ -18,6 +18,7 @@ class Member
         $row=$result->fetch_array(MYSQLI_ASSOC);
         
         if($result->num_rows){
+            $_SESSION['userID'] = $row['User_ID'];
             $_SESSION['user'] = $row['FName'];
             $_SESSION['MemberName'] = $row['FName']." ".$row['LName'];
             $_SESSION['MemberSince'] = $row['AccountCreated'];
