@@ -8,8 +8,6 @@ if (empty($_SESSION['LoggedIn'])){
 
 else{
 require("includes/page.php");
-$BgImg = "marley_resort.jpg"; //replace with SQL Query
-$BgImgAlt = "Bob Marley Resort, Nasau, Bahamas"; //replace with SQL Query
 
 Class MyAccountPage extends Page{
   public $countries = [["US", "United States"],
@@ -208,16 +206,37 @@ Class MyAccountPage extends Page{
   }
 
   public function DisplayWanderlust(){
+    $userID = $_SESSION['userID'];
+    $saved_sql = "SELECT DISTINCT savedlist.User_ID, savedlist.DateAdded, location.LocationName, expedition.ExpeditionName, city.CityName, country.CountryName
+    FROM savedlist
+    LEFT JOIN (expedition, location, city, country, users)
+    ON (users.User_ID = savedlist.User_ID
+    AND expedition.Expedition_ID = savedlist.Expedition_ID
+    AND location.Location_ID = expedition.Location_ID
+    AND city.City_ID = location.City_ID
+    AND country.Country_ID = city.Country)
+    WHERE savedlist.User_ID = '$userID'";
+    $saved_rs = $this->db->query($saved_sql);
+    $row=$saved_rs->fetch_array(MYSQLI_ASSOC);
+    $num_rows = $saved_rs->num_rows;
     ?>
       <!-- WanderlustSection --> 
       <div class="wanderlust-panel">
         <h3><?php echo "Destinations to Visit"?></h3>
-        <div class="wanderlust">
-          <h4><?php echo "{destination tag}"?></h4>
-          <h4><?php echo "{excursion tag}"?></h4> 
-          <p><?php echo "{date added}"?></p>
-          <a href="#">View info on this place</a>
-        </div>
+        <?php
+        if($num_rows>0){
+          do{
+            ?>
+            <div class="wanderlust">
+              <h4><?=$row['CityName'].", ".$row['CountryName']?></h4>
+              <h5><?=$row['ExpeditionName']." at ".$row['LocationName']?></h4> 
+              <p>Added on <?=$row['DateAdded']?></p>
+              <!--<a href="#">figure out how to link to city page</a> -->
+            </div>
+            <?php
+          } while($row = $saved_rs->fetch_array(MYSQLI_ASSOC));
+        }else{echo "<h4>You have no places saved currently</h4>";}
+          ?>
         <div class="container" id="submit">
           <button type="submit" onclick="addJourney()">Add Journey</button>
         </div>  

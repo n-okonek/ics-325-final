@@ -178,9 +178,16 @@ CREATE TABLE `savedlist` (
   `User_ID` int NOT NULL,
   `Expedition_ID` int DEFAULT NULL,
   `Location_ID` varchar(6) DEFAULT NULL,
+  `City` int DEFAULT NULL,
+  `State` int DEFAULT NULL,
+  `Country` varchar(2) DEFAULT NULL,
+  `DateAdded` datetime DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`User_ID`),
   KEY `Location_ID` (`Location_ID`),
   KEY `Expedition_ID` (`Expedition_ID`),
+  KEY `City_idx` (`City`),
+  KEY `State_idx` (`State`),
+  KEY `Country_idx` (`Country`),
   CONSTRAINT `savedlist_ibfk_1` FOREIGN KEY (`Location_ID`) REFERENCES `location` (`location_ID`),
   CONSTRAINT `savedlist_ibfk_2` FOREIGN KEY (`Expedition_ID`) REFERENCES `expedition` (`Expedition_ID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -192,7 +199,7 @@ CREATE TABLE `savedlist` (
 
 LOCK TABLES `savedlist` WRITE;
 /*!40000 ALTER TABLE `savedlist` DISABLE KEYS */;
-INSERT INTO `savedlist` VALUES (200000,NULL,'BB0002'),(200001,NULL,NULL),(200002,3,'TD0002');
+INSERT INTO `savedlist` VALUES (200000,NULL,'BB0002',NULL,NULL,NULL,'2020-04-23 12:08:43'),(200001,NULL,NULL,NULL,NULL,NULL,'2020-04-23 12:08:43'),(200002,3,'TD0002',NULL,NULL,NULL,'2020-04-23 12:08:43');
 /*!40000 ALTER TABLE `savedlist` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -294,4 +301,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-04-22 10:10:55
+-- Dump completed on 2020-04-23 13:54:36
