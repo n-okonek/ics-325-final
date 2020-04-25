@@ -38,7 +38,7 @@ class AdventurePage extends Page{
     <?php
     
     if ($num_rows > 0){
-      for ($x=0; $x<$num_rows; $x++){
+      do{
         ?>
         <div class='top-review'>
           <div class='review-content'>
@@ -47,7 +47,7 @@ class AdventurePage extends Page{
           </div>
         </div>
         <?php
-      }
+      }while($row=$result->fetch_array(MYSQLI_ASSOC));
     }else{
       ?>
         <div class='top-review'>
