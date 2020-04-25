@@ -217,6 +217,13 @@ class Page{
 
               <section class='page-title'>
                 <h2> Welcome <?=$_SESSION['user']?></h2>
+                <?php 
+                  if (isset($_SESSION["successMessage"])){
+                    ?>
+                    <div class="alert alert-success" role="alert"><?= $_SESSION["successMessage"];?></div>
+                    <?php unset($_SESSION["successMessage"]);
+                  }
+                ?>
               </section>
             <?php
           }
