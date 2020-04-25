@@ -10,27 +10,6 @@ else{
 require("includes/page.php");
 
 Class MyAccountPage extends Page{
-  public $countries = [["US", "United States"],
-                       ["UM", "United States Minor Outlying Islands"]
-  ];
-  public $CoE = ["AU",
-                 "DE",
-                 "GL",
-                 "CF",
-                 "US",
-                 "RU"];
-  public $expedition = ["ALICES",
-                        "BADKIS",
-                        "BERLIN",
-                        "KANGER",
-                        "KAZUMB",
-                        "LOSANG",
-                        "MWANZA",
-                        "QEQERT",
-                        "SAMBUR",
-                        "SANDIE",
-                        "SNEZHN",
-                        "YULARA"];
 
   private $db;
 
@@ -50,8 +29,8 @@ Class MyAccountPage extends Page{
     $this -> DisplayWanderlust();
     $this -> DisplayFooter();
     $this -> UpdateUserForm($this->countries);
-    $this -> AddReview($this->CoE, $this->expedition);
-    $this -> AddJourney($this->CoE, $this->expedition);
+    $this -> AddReview();
+    $this -> AddJourney();
   }
 
   public function DisplayAccountInfo(){
@@ -100,7 +79,6 @@ Class MyAccountPage extends Page{
           do {
             echo "<option value='".$cs_rs['Country_ID']."'>".$cs_rs['CountryName']."</option>";
           } while($cs_rs=$cs_query->fetch_array(MYSQLI_ASSOC));
-          $this->db->close();
         ?>
       </select>
       </br>
@@ -151,7 +129,7 @@ Class MyAccountPage extends Page{
     <?php
   }
 
-  public function AddReview($CoE, $expedition){
+  public function AddReview(){
     ?>
     <div class="add-review">
       <form id="add-review" action="includes/addreview.php" method="post">
@@ -159,18 +137,34 @@ Class MyAccountPage extends Page{
           <label for="expeditionCountry">Select a Country:</label>
           <select class="form-control" id="expeditionCountry" name="country" onchange="showExpeditions(this.value);">
             <option>Select an option</option>
-            <? for($c=0; $c<count($CoE); $c++){
-                echo "<option value='".$CoE[$c]."'>".$CoE[$c]."</option>";
-            }?>
+            <?php
+              $cs_sql = "SELECT DISTINCT city.Country, country.CountryName FROM City LEFT JOIN country ON country.country_ID = city.Country";
+              $cs_query = $this->db->query($cs_sql);
+              $cs_rs=$cs_query->fetch_array(MYSQLI_ASSOC);
+              
+              do{
+                ?>
+                  <option value="<?=$cs_rs['Country']?>"><?=$cs_rs['CountryName']?></option>
+                <?php
+              }while($cs_rs=$cs_query->fetch_array(MYSQLI_ASSOC));
+            ?>
           </select>
         </div>
         <div class="form-group expedition-selector">
           <label for="expedition">Select an Expedition:</label>
           <select name="expedition" class="form-control" id="expedition">
             <option>Select an option</option>
-            <? for($e=0; $e<count($expedition); $e++){
-                echo "<option value='".$expedition[$e]."'>".$expedition[$e]."</option>";
-            }?>
+            <?php
+              $cs_sql = "SELECT DISTINCT city.City_ID, city.CityName FROM City";
+              $cs_query = $this->db->query($cs_sql);
+              $cs_rs=$cs_query->fetch_array(MYSQLI_ASSOC);
+              
+              do{
+                ?>
+                  <option value="<?=$cs_rs['City_ID']?>"><?=$cs_rs['CityName']?></option>
+                <?php
+              }while($cs_rs=$cs_query->fetch_array(MYSQLI_ASSOC));
+            ?>
           </select>
         </div>
         <label for="reviewHeadline">Review Headline: </label>
@@ -195,10 +189,10 @@ Class MyAccountPage extends Page{
         <input type="date" id="date-reviewed" name="date-reviewed" value="<?=date("Y/m/d");?>" hidden />
         <br />
         <div class="container" id="submit" >
-          <button type="submit" name="addreview" value="addreview">Update Profile</button>
+          <button type="submit" name="addreview" value="addreview">Add Review</button>
         </div>
         <div class="container" id="cancel">
-          <div onclick="$('.add-review').fadeOut();">Cancel</div>
+          <div onclick="closeForm('add-review')">Cancel</div>
         </div>
       </form>
     </div>
@@ -207,7 +201,7 @@ Class MyAccountPage extends Page{
 
   public function DisplayWanderlust(){
     $userID = $_SESSION['userID'];
-    $saved_sql = "SELECT DISTINCT savedlist.User_ID, savedlist.DateAdded, location.LocationName, expedition.ExpeditionName, city.CityName, country.CountryName
+    $saved_sql = "SELECT DISTINCT savedlist.User_ID, savedlist.DateAdded, location.LocationName, expedition.ExpeditionName, city.CityName, city.City_ID, country.CountryName
     FROM savedlist
     LEFT JOIN (expedition, location, city, country, users)
     ON (users.User_ID = savedlist.User_ID
@@ -231,47 +225,45 @@ Class MyAccountPage extends Page{
               <h4><?=$row['CityName'].", ".$row['CountryName']?></h4>
               <h5><?=$row['ExpeditionName']." at ".$row['LocationName']?></h4> 
               <p>Added on <?=$row['DateAdded']?></p>
-              <!--<a href="#">figure out how to link to city page</a> -->
+              <p><a href="./adventure?pid=<?=$row['City_ID']?>">More Information</a></p>
             </div>
             <?php
           } while($row = $saved_rs->fetch_array(MYSQLI_ASSOC));
         }else{echo "<h4>You have no places saved currently</h4>";}
           ?>
         <div class="container" id="submit">
-          <button type="submit" onclick="addJourney()">Add Journey</button>
+          <button type="submit" onclick="addJourney()">Add Destination</button>
         </div>  
       </div>
     <?php
   }
 
-  public function AddJourney($CoE, $expedition){
+  public function AddJourney(){
     ?>
     <div class="add-journey">
-    <form id="add-journey" action="addjourney.php" method="post">
+    <form id="add-journey" action="includes/addjourney.php" method="post">
       <div class="form-group">
         <label for="journeyCountry">Select a Country:</label>
-        <select class="form-control" id="journeyCountry" onchange="showExpeditions(this.value);">
+        <select class="form-control" id="journeyCountry" name="expedition">
           <option>Select an option</option>
-          <? for($c=0; $c<count($CoE); $c++){
-              echo "<option value='".$CoE[$c]."'>".$CoE[$c]."</option>";
-          }?>
+          <?php
+              $es_sql = "SELECT DISTINCT ExpeditionName, Expedition_ID, Location_ID FROM expedition";
+              $es_query = $this->db->query($es_sql);
+              $es_rs=$es_query->fetch_array(MYSQLI_ASSOC);
+              
+              do{
+                ?>
+                  <option value="<?=$es_rs['Expedition_ID']?>"><?=$es_rs['ExpeditionName']?></option>
+                <?php
+              }while($es_rs=$es_query->fetch_array(MYSQLI_ASSOC));
+            ?>
         </select>
       </div>
-      <div class="form-group expedition-selector">
-        <label for="journeyExpedition">Select an Expedition:</label>
-        <select class="form-control" id="journeyExpedition">
-          <option>Select an option</option>
-          <? for($e=0; $e<count($expedition); $e++){
-              echo "<option value='".$expedition[$e]."'>".$expedition[$e]."</option>";
-          }?>
-        </select>
-      </div>
-      <input type="date" id="date-added" name="date-added" value="<?=date("Y/m/d");?>" hidden />
       <div class="container" id="submit">
-        <button type="submit">Update Profile</button>
+        <button type="submit">Add Destination</button>
       </div>
       <div class="container" id="cancel">
-        <div onclick="$('.add-journey').fadeOut();">Cancel</div>
+        <div onclick="closeForm('add-journey')">Cancel</div>
       </div>
     </form>
   </div>
