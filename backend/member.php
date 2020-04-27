@@ -1,5 +1,4 @@
 <?php
-session_start();
 
 class Member
 {
@@ -28,7 +27,6 @@ class Member
             return true;
         }
         $this->db->close();
-
     }
 
     public function createUser($fname, $lname, $email, $pw, $dob, $coo){
@@ -40,15 +38,26 @@ class Member
         $stmt->execute();
         
         if($stmt->affected_rows > 0){
-            $_SESSION["userId"] = $fname;
-            $user = $_SESSION["userId"];
+            $_SESSION['user'] = $fname;
+            $user = $_SESSION['user'];
+            $query = "SELECT * FROM users WHERE Email = '$email'";
+            $result = $this->db->query($query);
+            $userInfo = $result->fetch_array(MYSLI_ASSOC);
+            $_SESSION['userID'] = $row['User_ID'];
             return true;
         }
+        $this->db->close();
     }
 
-    public function updateUser(){
-        
+    public function updateUser($key, $value){
+        $query = "UPDATE users SET $key = ? WHERE User_ID = ?";
+        $stmt = $this->db->prepare($query);
+        $stmt->bind_param("si", $value, $_SESSION['userID']);
+        $stmt->execute();
+        if ($stmt->affected_rows > 0){
+            return 1;
+        }else {return 0;}
+        $this->db->close();
     }
-
 }
 ?>
