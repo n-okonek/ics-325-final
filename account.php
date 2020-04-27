@@ -58,7 +58,7 @@ Class MyAccountPage extends Page{
     $cs_rs=$cs_query->fetch_array(MYSQLI_ASSOC);
     ?>
     <div class="update-user">
-  <form id="update-user" action="userupdate.php" method="post">
+  <form id="update-user" action="./includes/userupdate.php" method="post">
     <div class="container" id="register">
       <label for="Fname">First Name:</label>
       <input class="form-control" type="text" name="Fname" id="Fname" maxLength="24">
@@ -74,7 +74,8 @@ Class MyAccountPage extends Page{
       <input class="form-control" type="date" name="dob" id="db">
       </br>
       <label for="origin">What country are you from?</label>
-      <select class="form-control" class id="origin">
+      <select class="form-control" class id="origin" name="origin">
+      <option>Select an option to change where you are from</option>
       <?php
           do {
             echo "<option value='".$cs_rs['Country_ID']."'>".$cs_rs['CountryName']."</option>";
@@ -87,7 +88,7 @@ Class MyAccountPage extends Page{
       <button type="submit" value="update" name="update">Update Profile</button>
     </div>
     <div class="container" id="cancel">
-      <div onclick="$('.update-user').fadeOut();">Cancel</div>
+      <div onclick="closeForm('update-user')">Cancel</div>
     </div>
   </form>
   </div>
@@ -269,7 +270,6 @@ Class MyAccountPage extends Page{
   </div>
   <?php
   }
-
 }
 
 $account = new MyAccountPage();
