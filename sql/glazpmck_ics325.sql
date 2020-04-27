@@ -1,3 +1,5 @@
+CREATE DATABASE  IF NOT EXISTS `glazpmck_ics325` /*!40100 DEFAULT CHARACTER SET utf8 */ /*!80016 DEFAULT ENCRYPTION='N' */;
+USE `glazpmck_ics325`;
 -- MySQL dump 10.13  Distrib 8.0.19, for Win64 (x86_64)
 --
 -- Host: 127.0.0.1    Database: glazpmck_ics325
@@ -281,7 +283,7 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES (200000,'mikekn@gmail.com','Mike','Kn','p@ssw0rd','1989-09-09','US','2020-04-21 10:20:02'),(200001,'meygansc@yahoo.com','Meygan','Sc','123098','1990-10-10','US','2020-04-21 10:20:02'),(200002,'nickok@mail.net','Nick','Ok','7938b5a64decef3875c670fc140b0527','1991-11-11','US','2020-04-21 10:20:02');
+INSERT INTO `users` VALUES (200000,'mikekn@gmail.com','Mike','Kn','p@ssw0rd','1989-09-09','US','2020-04-21 10:20:02'),(200001,'meygansc@yahoo.com','Meygan','Sc','123098','1990-10-10','US','2020-04-21 10:20:02'),(200002,'nickokonek@gmail.com','Nick','Okonek','7938b5a64decef3875c670fc140b0527','1984-08-06','US','2020-04-21 10:20:02');
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -294,4 +296,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-04-25 10:49:01
+-- Dump completed on 2020-04-26 23:37:32
