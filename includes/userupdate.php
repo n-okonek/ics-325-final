@@ -1,4 +1,5 @@
 <?php
+session_start();
 
 if (! empty($_POST["update"])) {
   $fName = filter_var($_POST["Fname"], FILTER_SANITIZE_STRING);
@@ -7,17 +8,43 @@ if (! empty($_POST["update"])) {
   $dob = filter_var($_POST["dob"], FILTER_SANITIZE_STRING);
   $coo = filter_var($_POST["origin"], FILTER_SANITIZE_STRING);
   require_once ("../backend/member.php");
-  $updates = array($fname, $lname, $email, $pw, $dob, $coo);
+
+  $updates = array('FName'=>$fName, 'LName'=>$lName, 'Email'=>$email, 'DOB'=>$dob, 'Origin'=>$coo);
     
   $member = new Member();
-  
-  foreach ($updates as $u){
-    if (!isBlank($u)){
-      $updated = $member -> updateUser($u);
+  $changed=0;
+
+  foreach ($updates as $key=>$value){
+    if (!empty($value)){
+      $updated = $member -> updateUser($key, $value);
+      $changed += $updated;
     }
   }
-  
-  $updated = $member ->updateUser($fname, $lname, $email, $pw, $dob, $coo);
+
+  if ($changed > 0){
+    $_SESSION['successMessage'] = "Your account details have been updated";
+
+    $db = new mysqli('localhost', 'glazpmck_ics325_web', 'ICS325.01-2020', 'glazpmck_ics325' );
+
+    $query = "SELECT * FROM users WHERE User_ID = ?";
+    $stmt = $db->prepare($query);
+    $stmt->bind_param("s", $_SESSION['userID']);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    
+    while ($myrow = $result->fetch_assoc()){
+      $_SESSION['userID'] = $myrow['User_ID'];
+      $_SESSION['user'] = $myrow['FName'];
+      $_SESSION['MemberName'] = $myrow['FName']." ".$myrow['LName'];
+      $_SESSION['Email'] = $myrow['Email'];
+      $_SESSION['DOB'] = $myrow['DOB'];
+      $_SESSION['Country'] = $myrow['Origin'];
+    }
+  }else {
+    $_SESSION['errorMessage'] = "OH NO! Our hamsters got stuck on the wheel, we couldn't update your information.";
+  }
+
+  header("Location: ../account.php");
 }
 
 ?>
