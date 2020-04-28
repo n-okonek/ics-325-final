@@ -1,4 +1,5 @@
 <?php
+session_start();
 if ( !empty($_POST["register"]) ){
   $fName = filter_var($_POST["Fname"], FILTER_SANITIZE_STRING);
   $lName = filter_var($_POST["Lname"], FILTER_SANITIZE_STRING);
