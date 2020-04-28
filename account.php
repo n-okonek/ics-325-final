@@ -111,6 +111,7 @@ Class MyAccountPage extends Page{
       <div class="expedition-panel">
         <h3><?php echo "Reviews I've Written"?></h3>
         <?php
+        if($reviews_rs->num_rows > 0){
           do{
             ?>
             <div class="myExpeditions">
@@ -122,6 +123,7 @@ Class MyAccountPage extends Page{
             </div>
             <?php
           } while($row = $reviews_rs->fetch_array(MYSQLI_ASSOC));
+        }else{echo "<h4>You have not added any reviews</h4>";}
           ?>
         <div class="container" id="submit">
           <button type="submit" onclick="addReview();">Add Review</button>
