@@ -171,7 +171,7 @@ class Page{
                 <img src="img/<?=$BGImg?>" alt="<?=$BGImgAlt?>" />
               </div>
 
-              <section class='page-title'>
+              <section class='page-title index'>
                 <h2><?=$PageTitle?></h2>
               </section>
             <?php
