@@ -5,12 +5,17 @@ a{
 
 .open{
   float: right;
-  width: max-content;
+  width: 66.666666666%;
   bottom: -20px;
   position: relative;
+  text-align: right;
 
   @media (min-width: @sizes[desktop]){
     bottom: -33px;
+  }
+
+  @media (min-width: 1280px){
+    max-width: 52%;
   }
   
   li{
