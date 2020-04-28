@@ -22,9 +22,9 @@ class AdventurePage extends Page{
     }
     
     $id = $db->real_escape_string($_GET['pid']);
-    $query = "SELECT reviewlist.ReviewID, reviewlist.ReviewHeadline, reviewlist.Review, reviewlist.User_ID, users.fname, reviewlist.city, reviewlist.rating 
+    $query = "SELECT reviewlist.ReviewID, reviewlist.ReviewHeadline, reviewlist.Review, reviewlist.User_ID, users.FName, reviewlist.City, reviewlist.Rating 
     FROM reviewlist
-    INNER JOIN users ON reviewlist.user_id = users.user_ID
+    INNER JOIN users ON reviewlist.User_ID = users.User_ID
     INNER JOIN sitemap ON reviewlist.City = sitemap.pageID
     WHERE reviewlist.city = '$id'";
     $result = $db->query($query);

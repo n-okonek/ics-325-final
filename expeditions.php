@@ -29,9 +29,9 @@ class MapPage extends Page{
 
   public function displayMapPoints(){
     $db = new mysqli('localhost', 'glazpmck_ics325_web', 'ICS325.01-2020', "glazpmck_ics325");
-    $query = "Select City.City_ID, City.CityName, City.Country, Country.CountryName, City.CityDescription, City.map_x, City.map_y
-    from City
-    Inner join country ON city.country=country.Country_ID;";
+    $query = "Select city.City_ID, city.CityName, city.Country, country.CountryName, city.CityDescription, city.map_x, city.map_y
+    from city
+    Inner join country ON city.Country=country.Country_ID;";
     $stmt = $db->prepare($query);
     $stmt->execute();
     $stmt->store_result();

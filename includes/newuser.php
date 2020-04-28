@@ -18,7 +18,7 @@ if ( !empty($_POST["register"]) ){
     if ($pw == $pw2){
       $newuser -> createUser($fName, $lName, $email, $pw, $dob, $coo);
       header("Location: ../account.php");
-    }else{
+    }elseif ($pw !== $pw2){
       $_SESSION["errorMessage"] = "Password fields do not match.";
       //header("Location: ../register.php");
     }

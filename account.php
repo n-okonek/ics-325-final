@@ -97,7 +97,7 @@ Class MyAccountPage extends Page{
 
   public function DisplayExpeditions(){
     $userID = $_SESSION['userID'];
-    $reviews_sql = "SELECT reviewlist.User_ID, reviewlist.rating, reviewlist.Review, reviewlist.ReviewHeadline, reviewlist.DateAdded, city.CityName, country.CountryName 
+    $reviews_sql = "SELECT reviewlist.User_ID, reviewlist.Rating, reviewlist.Review, reviewlist.ReviewHeadline, reviewlist.DateAdded, city.CityName, country.CountryName 
     FROM reviewlist
     LEFT JOIN (users, city, country)
     ON (users.User_ID=reviewlist.User_ID 
@@ -141,7 +141,7 @@ Class MyAccountPage extends Page{
           <select class="form-control" id="expeditionCountry" name="country" onchange="showExpeditions(this.value);">
             <option>Select an option</option>
             <?php
-              $cs_sql = "SELECT DISTINCT city.Country, country.CountryName FROM City LEFT JOIN country ON country.country_ID = city.Country";
+              $cs_sql = "SELECT DISTINCT city.Country, country.CountryName FROM city LEFT JOIN country ON country.Country_ID = city.Country";
               $cs_query = $this->db->query($cs_sql);
               $cs_rs=$cs_query->fetch_array(MYSQLI_ASSOC);
               
@@ -158,7 +158,7 @@ Class MyAccountPage extends Page{
           <select name="expedition" class="form-control" id="expedition">
             <option>Select an option</option>
             <?php
-              $cs_sql = "SELECT DISTINCT city.City_ID, city.CityName FROM City";
+              $cs_sql = "SELECT DISTINCT city.City_ID, city.CityName FROM city";
               $cs_query = $this->db->query($cs_sql);
               $cs_rs=$cs_query->fetch_array(MYSQLI_ASSOC);
               
