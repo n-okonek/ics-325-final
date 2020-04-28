@@ -38,12 +38,8 @@ class Member
         $stmt->execute();
         
         if($stmt->affected_rows > 0){
-            $_SESSION['user'] = $fname;
-            $user = $_SESSION['user'];
-            $query = "SELECT * FROM users WHERE Email = '$email'";
-            $result = $this->db->query($query);
-            $userInfo = $result->fetch_array(MYSLI_ASSOC);
-            $_SESSION['userID'] = $row['User_ID'];
+            $this->processLogin($email,$pw);
+            $_SESSION['LoggedIn'] = true;
             return true;
         }
         $this->db->close();
