@@ -154,7 +154,7 @@ CREATE TABLE `reviewlist` (
   PRIMARY KEY (`ReviewID`),
   KEY `Country_idx` (`Country`),
   CONSTRAINT `Country` FOREIGN KEY (`Country`) REFERENCES `country` (`Country_ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -163,7 +163,7 @@ CREATE TABLE `reviewlist` (
 
 LOCK TABLES `reviewlist` WRITE;
 /*!40000 ALTER TABLE `reviewlist` DISABLE KEYS */;
-INSERT INTO `reviewlist` VALUES (1,200000,2,'Expedition','Hated it. Shitty DJ','Whales are good MMk...','GL',7,'2020-04-22 10:01:59'),(2,200001,5,'Location','The Techno house was a way cooler place to hang-out then I though, the back bar that was an old tank was AMAZEBALLS','Hit a wall...','DE',8,'2020-04-22 10:01:59'),(3,200002,3,'Location','I am bummed that I missed Lemmy playing his poker game','Rainbow bar','US',12,'2020-04-22 10:01:59'),(4,200002,2,'Location','It&#39;s really cold!!!!','Don&#39;t go in winter','GL',7,'2020-04-24 12:02:58');
+INSERT INTO `reviewlist` VALUES (1,200000,2,'Expedition','Hated it. Shitty DJ','Whales are good MMk...','GL',7,'2020-04-22 10:01:59'),(2,200001,5,'Location','The Techno house was a way cooler place to hang-out then I though, the back bar that was an old tank was AMAZEBALLS','Hit a wall...','DE',8,'2020-04-22 10:01:59'),(3,200002,3,'Location','I am bummed that I missed Lemmy playing his poker game','Rainbow bar','US',12,'2020-04-22 10:01:59'),(4,200002,2,'Location','It&#39;s really cold!!!!','Don&#39;t go in winter','GL',7,'2020-04-24 12:02:58'),(5,200010,5,'Location','So hot! Loved roasting marshmellows over an open koala!','This place was blazing!','AU',10,'2020-04-28 20:42:54'),(6,200013,3,'Location','Test review','test','AU',0,'2020-04-29 00:14:29');
 /*!40000 ALTER TABLE `reviewlist` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -185,7 +185,7 @@ CREATE TABLE `savedlist` (
   KEY `Expedition_ID` (`Expedition_ID`),
   CONSTRAINT `savedlist_ibfk_1` FOREIGN KEY (`Location_ID`) REFERENCES `location` (`location_ID`),
   CONSTRAINT `savedlist_ibfk_2` FOREIGN KEY (`Expedition_ID`) REFERENCES `expedition` (`Expedition_ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -194,7 +194,7 @@ CREATE TABLE `savedlist` (
 
 LOCK TABLES `savedlist` WRITE;
 /*!40000 ALTER TABLE `savedlist` DISABLE KEYS */;
-INSERT INTO `savedlist` VALUES (200000,NULL,'BB0002','2020-04-23 12:08:43',1),(200001,NULL,NULL,'2020-04-23 12:08:43',2),(200002,3,'TD0002','2020-04-23 12:08:43',3),(200002,1,'BB0002','2020-04-25 10:30:12',6),(200002,2,'KK0001','2020-04-25 10:32:57',7);
+INSERT INTO `savedlist` VALUES (200000,NULL,'BB0002','2020-04-23 12:08:43',1),(200001,NULL,NULL,'2020-04-23 12:08:43',2),(200002,3,'TD0002','2020-04-23 12:08:43',3),(200002,1,'BB0002','2020-04-25 10:30:12',6),(200002,2,'KK0001','2020-04-25 10:32:57',7),(200010,1,'BB0002','2020-04-28 22:52:37',8),(200013,1,'BB0002','2020-04-29 00:08:42',9);
 /*!40000 ALTER TABLE `savedlist` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -242,7 +242,7 @@ CREATE TABLE `state` (
   PRIMARY KEY (`State_ID`),
   KEY `Country_ID` (`Country_ID`),
   CONSTRAINT `state_ibfk_1` FOREIGN KEY (`Country_ID`) REFERENCES `country` (`Country_ID`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -274,7 +274,7 @@ CREATE TABLE `users` (
   PRIMARY KEY (`User_ID`),
   KEY `Origin_idx` (`Origin`),
   CONSTRAINT `Origin` FOREIGN KEY (`Origin`) REFERENCES `country` (`Country_ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=200003 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=200014 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -283,7 +283,7 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES (200000,'mikekn@gmail.com','Mike','Kn','p@ssw0rd','1989-09-09','US','2020-04-21 10:20:02'),(200001,'meygansc@yahoo.com','Meygan','Sc','123098','1990-10-10','US','2020-04-21 10:20:02'),(200002,'nickokonek@gmail.com','Nick','Okonek','7938b5a64decef3875c670fc140b0527','1984-08-06','US','2020-04-21 10:20:02');
+INSERT INTO `users` VALUES (200000,'mikekn@gmail.com','Mike','Kn','p@ssw0rd','1989-09-09','US','2020-04-21 10:20:02'),(200001,'meygansc@yahoo.com','Meygan','Sc','123098','1990-10-10','US','2020-04-21 10:20:02'),(200002,'nickokonek@gmail.com','Nick','Okonek','7938b5a64decef3875c670fc140b0527','1984-08-06','US','2020-04-21 10:20:02'),(200010,'tigerking@oklahomastate.pen','Joe','Exotic','731b9b2056081c69bd32f4f64230e71d','2020-04-20','Se','2020-04-28 18:49:44'),(200011,'m_schroeder90@hotmail.com','Meg','Sch','a7d7175d98ae9d40d101118a8237a82e','1990-11-17','US','2020-04-28 18:57:26'),(200012,'mlkknuyt@net.mail','Michael','knut','a8a13ff36eecb0d482c1a9b3e22191fe','1999-09-09','TG','2020-04-28 19:01:30'),(200013,'123@gmail.com','New','Customer','e99a18c428cb38d5f260853678922e03','2000-12-12','AE','2020-04-29 00:07:46');
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -296,4 +296,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-04-26 23:37:32
+-- Dump completed on 2020-04-29 10:55:42
