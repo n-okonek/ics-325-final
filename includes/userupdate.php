@@ -30,6 +30,7 @@ if (! empty($_POST["update"])) {
     $stmt = $db->prepare($query);
     $stmt->bind_param("i", $_SESSION['userID']);
     $stmt->execute();
+    $stmt->store_result();
     $stmt->bind_result($userID, $email, $fname, $lname, $ps, $dob, $origin, $ac);
         
     while ($stmt->fetch()){
