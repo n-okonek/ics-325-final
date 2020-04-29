@@ -30,15 +30,15 @@ if (! empty($_POST["update"])) {
     $stmt = $db->prepare($query);
     $stmt->bind_param("i", $_SESSION['userID']);
     $stmt->execute();
-    $result = $stmt->get_result();
-    
-    while ($myrow = $result->fetch_assoc()){
-      $_SESSION['userID'] = $myrow['User_ID'];
-      $_SESSION['user'] = $myrow['FName'];
-      $_SESSION['MemberName'] = $myrow['FName']." ".$myrow['LName'];
-      $_SESSION['Email'] = $myrow['Email'];
-      $_SESSION['DOB'] = $myrow['DOB'];
-      $_SESSION['Country'] = $myrow['Origin'];
+    $stmt->bind_result($userID, $email, $fname, $lname, $ps, $dob, $origin, $ac);
+        
+    while ($stmt->fetch()){
+      $_SESSION['userID'] = $userID;
+      $_SESSION['user'] = $fname;
+      $_SESSION['MemberName'] =$fname." ".$lname;
+      $_SESSION['Email'] = $email;
+      $_SESSION['DOB'] = $dob;
+      $_SESSION['Country'] = $origin;
     }
   }else {
     $_SESSION['errorMessage'] = "OH NO! Our hamsters got stuck on the wheel, we couldn't update your information.";
