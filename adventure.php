@@ -42,8 +42,8 @@ class AdventurePage extends Page{
         ?>
         <div class='top-review'>
           <div class='review-content'>
-            <h4><?=$row['ReviewHeadline']?> - <?=$row['rating']?>/5</h4> 
-            <p><?=$row['Review']?></p><p>- <?=$row['fname']?></p>
+            <h4><?=$row['ReviewHeadline']?> - <?=$row['Rating']?>/5</h4> 
+            <p><?=$row['Review']?></p><p>- <?=$row['FName']?></p>
           </div>
         </div>
         <?php
