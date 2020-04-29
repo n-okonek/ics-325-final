@@ -188,3 +188,4 @@ Stack trace:
 [28-Apr-2020 20:53:06 America/New_York] PHP Notice:  Undefined property: MyAccountPage::$countries in /home/glazpmck/ics325.glazedproductions.com/account.php on line 31
 [28-Apr-2020 21:31:53 America/New_York] PHP Notice:  Undefined index: rating in /home/glazpmck/ics325.glazedproductions.com/account.php on line 122
 [28-Apr-2020 21:31:53 America/New_York] PHP Notice:  Undefined property: MyAccountPage::$countries in /home/glazpmck/ics325.glazedproductions.com/account.php on line 31
+[28-Apr-2020 21:42:07 America/New_York] PHP Notice:  Undefined property: MyAccountPage::$countries in /home/glazpmck/ics325.glazedproductions.com/account.php on line 31
