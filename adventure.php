@@ -42,7 +42,20 @@ class AdventurePage extends Page{
         ?>
         <div class='top-review'>
           <div class='review-content'>
-            <h4><?=$row['ReviewHeadline']?> - <?=$row['Rating']?>/5</h4> 
+            <h4><?=$row['ReviewHeadline']?><br /><?
+            //convert numeric rating to stars
+              for ($x=1; $x<=5; $x++){
+              if ($x < $row['Rating']){
+                ?>
+                <span class="fa fa-star"></span>
+                <?
+            }else{
+              ?>
+              <span class="fa fa-star-o"></span>
+              <?}
+          }
+          ?>
+          </h4> 
             <p><?=$row['Review']?></p><p>- <?=$row['FName']?></p>
           </div>
         </div>

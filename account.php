@@ -119,7 +119,21 @@ Class MyAccountPage extends Page{
               <h4><?=$row['ReviewHeadline']?></h4> 
               <p>Review added on <?=$row['DateAdded']?></p>
               <p>Review Text: <?=$row['Review']?></p>
-              <p>Rating: <?=$row['Rating']?>/5</p>
+              <p>Rating: 
+                <?
+                  //convert numeric rating to stars
+                  for ($x=1; $x<=5; $x++){
+                    if ($x < $row['Rating']){
+                    ?>
+                      <span class="fa fa-star"></span>
+                    <?
+                    }else{
+                    ?>
+                      <span class="fa fa-star-o"></span>
+                    <?}
+                  }
+                ?>
+              </p>
             </div>
             <?php
           } while($row = $reviews_rs->fetch_array(MYSQLI_ASSOC));
