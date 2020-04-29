@@ -52,3 +52,12 @@ Stack trace:
 Stack trace:
 #0 {main}
   thrown in /home/glazpmck/ics325.glazedproductions.com/includes/userupdate.php on line 33
+[28-Apr-2020 20:42:13 America/New_York] PHP Fatal error:  Uncaught Error: Call to undefined method mysqli_stmt::get_result() in /home/glazpmck/ics325.glazedproductions.com/includes/userupdate.php:33
+Stack trace:
+#0 {main}
+  thrown in /home/glazpmck/ics325.glazedproductions.com/includes/userupdate.php on line 33
+[28-Apr-2020 20:42:54 America/New_York] PHP Notice:  Only variables should be passed by reference in /home/glazpmck/ics325.glazedproductions.com/includes/addreview.php on line 16
+[28-Apr-2020 20:56:14 America/New_York] PHP Fatal error:  Uncaught Error: Call to undefined method mysqli_stmt::get_result() in /home/glazpmck/ics325.glazedproductions.com/includes/userupdate.php:33
+Stack trace:
+#0 {main}
+  thrown in /home/glazpmck/ics325.glazedproductions.com/includes/userupdate.php on line 33
