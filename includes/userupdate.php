@@ -30,7 +30,7 @@ if (! empty($_POST["update"])) {
     $stmt = $db->prepare($query);
     $stmt->bind_param("i", $_SESSION['userID']);
     $stmt->execute();
-    $result = $stmt->get_results();
+    $result = $stmt->get_result();
     
     while ($myrow = $result->fetch_assoc()){
       $_SESSION['userID'] = $myrow['User_ID'];
