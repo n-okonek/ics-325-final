@@ -2,3 +2,5 @@ Wonderlust Group Files.zip
 .vscode
 .vscode/settings.json
 .vscode/launch.json
+error_log
+includes/error_log

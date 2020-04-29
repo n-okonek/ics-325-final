@@ -18,7 +18,7 @@ if (! empty($_POST["update"])) {
     if (!empty($value)){
       $updated = $member -> updateUser($key, $value);
       $changed += $updated;
-    }
+    }else{ $changed+=0; }
   }
 
   if ($changed > 0){
@@ -28,9 +28,9 @@ if (! empty($_POST["update"])) {
 
     $query = "SELECT * FROM users WHERE User_ID = ?";
     $stmt = $db->prepare($query);
-    $stmt->bind_param("s", $_SESSION['userID']);
+    $stmt->bind_param("i", $_SESSION['userID']);
     $stmt->execute();
-    $result = $stmt->get_result();
+    $result = $stmt->get_results();
     
     while ($myrow = $result->fetch_assoc()){
       $_SESSION['userID'] = $myrow['User_ID'];
@@ -44,7 +44,7 @@ if (! empty($_POST["update"])) {
     $_SESSION['errorMessage'] = "OH NO! Our hamsters got stuck on the wheel, we couldn't update your information.";
   }
 
-  header("Location: ../account.php");
+  //header("Location: ../account.php");
 }
 
 ?>

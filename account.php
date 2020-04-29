@@ -119,7 +119,7 @@ Class MyAccountPage extends Page{
               <h4><?=$row['ReviewHeadline']?></h4> 
               <p>Review added on <?=$row['DateAdded']?></p>
               <p>Review Text: <?=$row['Review']?></p>
-              <p>Rating: <?=$row['rating']?>/5</p>
+              <p>Rating: <?=$row['Rating']?>/5</p>
             </div>
             <?php
           } while($row = $reviews_rs->fetch_array(MYSQLI_ASSOC));
