@@ -28,7 +28,7 @@ Class MyAccountPage extends Page{
     $this -> DisplayExpeditions();
     $this -> DisplayWanderlust();
     $this -> DisplayFooter();
-    $this -> UpdateUserForm($this->countries);
+    $this -> UpdateUserForm();
     $this -> AddReview();
     $this -> AddJourney();
   }
@@ -52,7 +52,7 @@ Class MyAccountPage extends Page{
     <?php
   }
 
-  public function UpdateUserForm($countries){
+  public function UpdateUserForm(){
     $cs_sql = "SELECT * FROM country";
     $cs_query = $this->db->query($cs_sql);
     $cs_rs=$cs_query->fetch_array(MYSQLI_ASSOC);
