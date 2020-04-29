@@ -1,0 +1,54 @@
+[28-Apr-2020 03:03:32 America/New_York] PHP Warning:  mysqli_stmt::bind_result(): Number of bind variables doesn't match number of fields in prepared statement in /home/glazpmck/ics325.glazedproductions.com/backend/member.php on line 19
+[28-Apr-2020 03:04:12 America/New_York] PHP Fatal error:  Uncaught Error: Call to a member function bind_param() on boolean in /home/glazpmck/ics325.glazedproductions.com/backend/member.php:32
+Stack trace:
+#0 /home/glazpmck/ics325.glazedproductions.com/includes/newuser.php(18): Member->createUser('New', 'Customer', '123@gmail.com', 'abc123', '2000-12-12', 'US')
+#1 {main}
+  thrown in /home/glazpmck/ics325.glazedproductions.com/backend/member.php on line 32
+[28-Apr-2020 15:20:47 America/New_York] PHP Fatal error:  Uncaught Error: Call to a member function bind_param() on boolean in /home/glazpmck/ics325.glazedproductions.com/backend/member.php:32
+Stack trace:
+#0 /home/glazpmck/ics325.glazedproductions.com/includes/newuser.php(18): Member->createUser('Joe', 'exotic', 'tigerking@oklah...', 'carolbaskins', '2020-04-21', 'US')
+#1 {main}
+  thrown in /home/glazpmck/ics325.glazedproductions.com/backend/member.php on line 32
+[28-Apr-2020 15:24:03 America/New_York] PHP Fatal error:  Uncaught Error: Call to a member function bind_param() on boolean in /home/glazpmck/ics325.glazedproductions.com/backend/member.php:32
+Stack trace:
+#0 /home/glazpmck/ics325.glazedproductions.com/includes/newuser.php(18): Member->createUser('Joe', 'exotic', 'tigerking@oklah...', 'carolbaskins', '2020-04-21', 'US')
+#1 {main}
+  thrown in /home/glazpmck/ics325.glazedproductions.com/backend/member.php on line 32
+[28-Apr-2020 15:33:12 America/New_York] PHP Warning:  mysqli_stmt::bind_result(): Number of bind variables doesn't match number of fields in prepared statement in /home/glazpmck/ics325.glazedproductions.com/backend/member.php on line 19
+[28-Apr-2020 15:54:40 America/New_York] PHP Fatal error:  Uncaught Error: Call to a member function bind_param() on boolean in /home/glazpmck/ics325.glazedproductions.com/includes/addreview.php:15
+Stack trace:
+#0 {main}
+  thrown in /home/glazpmck/ics325.glazedproductions.com/includes/addreview.php on line 15
+[28-Apr-2020 16:15:31 America/New_York] PHP Fatal error:  Uncaught Error: Call to a member function bind_param() on boolean in /home/glazpmck/ics325.glazedproductions.com/backend/member.php:32
+Stack trace:
+#0 /home/glazpmck/ics325.glazedproductions.com/includes/newuser.php(18): Member->createUser('New', 'Customer', '123@gmail.com', 'abc123', '2000-12-12', 'US')
+#1 {main}
+  thrown in /home/glazpmck/ics325.glazedproductions.com/backend/member.php on line 32
+[28-Apr-2020 16:56:07 America/New_York] PHP Fatal error:  Uncaught Error: Call to a member function bind_param() on boolean in /home/glazpmck/ics325.glazedproductions.com/backend/member.php:32
+Stack trace:
+#0 /home/glazpmck/ics325.glazedproductions.com/includes/newuser.php(18): Member->createUser('Joe', 'Exotic', 'tigerking@oklah...', 'damnyoubaskins', '2020-04-20', 'US')
+#1 {main}
+  thrown in /home/glazpmck/ics325.glazedproductions.com/backend/member.php on line 32
+[28-Apr-2020 17:41:44 America/New_York] PHP Fatal error:  Uncaught Error: Call to a member function bind_param() on boolean in /home/glazpmck/ics325.glazedproductions.com/includes/addreview.php:15
+Stack trace:
+#0 {main}
+  thrown in /home/glazpmck/ics325.glazedproductions.com/includes/addreview.php on line 15
+[28-Apr-2020 18:00:54 America/New_York] PHP Fatal error:  Uncaught Error: Call to a member function bind_param() on boolean in /home/glazpmck/ics325.glazedproductions.com/backend/member.php:32
+Stack trace:
+#0 /home/glazpmck/ics325.glazedproductions.com/includes/newuser.php(18): Member->createUser('New', 'Customer', '123@gmail.com', 'abc123', '2000-12-12', 'US')
+#1 {main}
+  thrown in /home/glazpmck/ics325.glazedproductions.com/backend/member.php on line 32
+[28-Apr-2020 18:31:02 America/New_York] PHP Fatal error:  Uncaught Error: Call to a member function bind_param() on boolean in /home/glazpmck/ics325.glazedproductions.com/backend/member.php:37
+Stack trace:
+#0 /home/glazpmck/ics325.glazedproductions.com/includes/newuser.php(19): Member->createUser('Joe', 'Exotic', 'tigerking@oklah...', 'baskins', '2020-04-20', 'US')
+#1 {main}
+  thrown in /home/glazpmck/ics325.glazedproductions.com/backend/member.php on line 37
+[28-Apr-2020 18:46:53 America/New_York] PHP Fatal error:  Uncaught Error: Call to a member function bind_param() on boolean in /home/glazpmck/ics325.glazedproductions.com/backend/member.php:37
+Stack trace:
+#0 /home/glazpmck/ics325.glazedproductions.com/includes/newuser.php(21): Member->createUser('Joe', 'Exotic', 'tigerking@oklah...', 'baskins', '2020-04-20', 'US')
+#1 {main}
+  thrown in /home/glazpmck/ics325.glazedproductions.com/backend/member.php on line 37
+[28-Apr-2020 19:58:04 America/New_York] PHP Fatal error:  Uncaught Error: Call to undefined method mysqli_stmt::get_result() in /home/glazpmck/ics325.glazedproductions.com/includes/userupdate.php:33
+Stack trace:
+#0 {main}
+  thrown in /home/glazpmck/ics325.glazedproductions.com/includes/userupdate.php on line 33
