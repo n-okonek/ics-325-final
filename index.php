@@ -35,7 +35,15 @@ class Homepage extends Page{
       <div class='top-review'>
         <div class='review-content'>
         <!-- change variables to array pointers -->
-        <h3><?=$headline?> - <?=$rating?>/5</h3> 
+        <h3><?=$headline?><br /><?
+          //convert numeric rating to stars
+          for ($x=1; $x<=5; $x++){
+            if ($x < $rating){
+              ?><span class="fa fa-star"></span>
+              <?
+            }else{?> <span class="fa fa-star-o"></span> <?}
+          }
+        ?></h3> 
         <p><?= $city.", ".$country?><br /><?=$review?></p><p>- <?=$name?></p>
       </div>
     </div>
