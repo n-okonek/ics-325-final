@@ -45,7 +45,7 @@ if (! empty($_POST["update"])) {
     $_SESSION['errorMessage'] = "OH NO! Our hamsters got stuck on the wheel, we couldn't update your information.";
   }
 
-  //header("Location: ../account.php");
+  header("Location: ../account.php");
 }
 
 ?>
