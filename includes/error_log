@@ -61,3 +61,7 @@ Stack trace:
 Stack trace:
 #0 {main}
   thrown in /home/glazpmck/ics325.glazedproductions.com/includes/userupdate.php on line 33
+[28-Apr-2020 21:42:42 America/New_York] PHP Fatal error:  Uncaught Error: Call to undefined method mysqli_stmt::get_results() in /home/glazpmck/ics325.glazedproductions.com/includes/userupdate.php:33
+Stack trace:
+#0 {main}
+  thrown in /home/glazpmck/ics325.glazedproductions.com/includes/userupdate.php on line 33
