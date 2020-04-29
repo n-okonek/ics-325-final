@@ -75,7 +75,7 @@ Class MyAccountPage extends Page{
       </br>
       <label for="origin">What country are you from?</label>
       <select class="form-control" class id="origin" name="origin">
-      <option>Select an option to change where you are from</option>
+      <option value="">Select an option to change where you are from</option>
       <?php
           do {
             echo "<option value='".$cs_rs['Country_ID']."'>".$cs_rs['CountryName']."</option>";
