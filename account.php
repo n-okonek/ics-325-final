@@ -46,7 +46,7 @@ Class MyAccountPage extends Page{
             <p><?php echo "Country: ".$_SESSION['Country'] ?></p>
         </div>
         <div class="container" id="submit">
-            <button type="submit" onclick="updateUser();">Update Profile</button>
+            <button type="submit" onclick="showForm('update-user');">Update Profile</button>
         </div>    
       </div>
     <?php
@@ -140,7 +140,7 @@ Class MyAccountPage extends Page{
         }else{echo "<h4>You have not added any reviews</h4>";}
           ?>
         <div class="container" id="submit">
-          <button type="submit" onclick="addReview();">Add Review</button>
+          <button type="submit" onclick="showForm('add-review');">Add Review</button>
         </div>    
       </div>
     <?php
@@ -249,7 +249,7 @@ Class MyAccountPage extends Page{
         }else{echo "<h4>You have no places saved currently</h4>";}
           ?>
         <div class="container" id="submit">
-          <button type="submit" onclick="addJourney()">Add Destination</button>
+          <button type="submit" onclick="showForm('add-journey');">Add Destination</button>
         </div>  
       </div>
     <?php
