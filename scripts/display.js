@@ -1,14 +1,5 @@
-
-function updateUser(){
-$('.update-user').fadeIn();
-}
-
-function addReview(){
-  $('.add-review').fadeIn();
-}
-
-function addJourney(){
-  $('.add-journey').fadeIn();
+function showForm(form){
+  $(".".concat(form)).fadeIn();
 }
 
 function closeForm(form){
