@@ -122,20 +122,22 @@ class Member
 		    $stmt->execute();
             $stmt->store_result();
             $numrows = $stmt->num_rows;
-            $stmt->bind_result($pwdReestID, $pwdResetEmail, $pwdResetSelector, $pwdResetToken, $pwdResetExpires);
+            $stmt->bind_result($pwdResetID, $pwdResetEmail, $pwdResetSelector, $pwdResetToken, $pwdResetExpires);
 		    
 		    if ($numrows <= 0) {
 			    echo "couldn't pull result set";
 			    exit();
 		    }
             else {
-                $tokenBin = hex2bin($validator);
-                $tokenCheck = password_verify($tokenBin, $pwdResetToken);
+                $token = hex2bin($validator);
+                $tokenCheck = password_verify($token, $pwdResetToken);
                 
                 if($tokenCheck === false) {
-                    echo "failed token check";
-                    echo tostring($tokenBin)."\n";
-                    echo tostring($pwdResetToken)."\n";
+                    $hash = password_hash($token, PASSWORD_DEFAULT);
+                    echo "failed token check\n";
+                    echo "token = {$token}\n";
+                    echo "hashed = {$hash}";
+                    echo "stored token = {$pwdResetToken}\n";
                     exit();
                 }
                 elseif ($tokenCheck === true) {
