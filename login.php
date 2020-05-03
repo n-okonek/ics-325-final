@@ -78,15 +78,16 @@ class LoginPage extends Page{
         echo "Could not validate your request!";
       } 
       else {
-        $_SESSION['errorMessage'] = "selector xdigit = ".ctype_xdigit($selector)." validator xdigit = ".ctype_xdigit($validator);
+        //DEBUGGING purposes only
+        //$_SESSION['errorMessage'] = "selector xdigit = ".ctype_xdigit($selector)." validator xdigit = ".ctype_xdigit($validator);
         if ( ctype_xdigit($selector) !== false && ctype_xdigit($validator) !== false ) {
           ?>
             <div class="new-pw">
               <form id="new-pw" action="includes/resetreq.php" method="post">
                 <input type="hidden" name="selector" value="<?php echo $selector?>">
                 <input type="hidden" name="validator" value="<?php echo $validator?>">
-                <input type="password" name="pwd" placeholder="Enter a new Password..">
-                <input type="password" name="pwd-repeat" placeholder="Repeat new Password..">
+                <label for='pwd'><b>Enter new password:</b></label><input type="password" class="form-control" name="pwd" id="pwd" placeholder="Enter a new Password.."><br />
+                <label for='pwd-repeat'><b>Confirm new password:</b></label><input type="password" class="form-control" name="pwd-repeat" id="pwd-repeat" placeholder="Repeat new Password.."><br />
                 <button type="submit" name="reset-password-submit">Reset Password</button>
               </form>
             </div>
