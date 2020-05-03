@@ -78,7 +78,7 @@ class Member
             $_SESSION['errorMessage'] = "Our hamster fell off the wheel, please try again.";
             exit();
         } else {
-            $hashedToken = password_hash($token, PASSWORD_DEFAULT);
+            $hashedToken = bin2hex($token);
             $stmt->bind_param("ssss", $email, $selector, $hashedToken, $expires);
             $stmt->execute();
         }
@@ -130,16 +130,15 @@ class Member
 		    }
             else {
                 $token = $validator;
-                $tokenCheck = password_verify($token, $pwdResetToken);
+                
+                if($token == $pwdResetToken){
+                    $tokenCheck = true;
+                }else{ $tokenCheck = false;}
+                
+                //$tokenCheck = password_verify($token, $pwdResetToken);
                 
                 if($tokenCheck === false) {
-                    echo $numrows."<br />";
-                    print_r($stmt->bind_result($pwdResetID, $pwdResetEmail, $pwdResetSelector, $pwdResetToken, $pwdResetExpires));
-                    $hash = password_hash($token, PASSWORD_DEFAULT);
-                    echo "<br />failed token check<br />";
-                    echo "token = {$token}<br />";
-                    echo "hashed = {$hash}<br />";
-                    echo "stored hash = $pwdResetToken";
+                    echo "failed token check";
                     exit();
                 }
                 elseif ($tokenCheck === true) {
