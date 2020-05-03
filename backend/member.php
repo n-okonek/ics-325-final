@@ -123,7 +123,7 @@ class Member
             $stmt->store_result();
             $numrows = $stmt->num_rows;
             $stmt->bind_result($pwdResetID, $pwdResetEmail, $pwdResetSelector, $pwdResetToken, $pwdResetExpires);
-		    
+            
 		    if ($numrows <= 0) {
 			    echo "couldn't pull result set";
 			    exit();
@@ -133,10 +133,12 @@ class Member
                 $tokenCheck = password_verify($token, $pwdResetToken);
                 
                 if($tokenCheck === false) {
+                    echo $numrows."<br />";
+                    print_r();
                     $hash = password_hash($token, PASSWORD_DEFAULT);
-                    echo "failed token check\n";
-                    echo "token = {$token}\n";
-                    echo "hashed = {$hash}";
+                    echo "failed token check<br />";
+                    echo "token = {$token}<br />";
+                    echo "hashed = {$hash}<br />";
                     echo "stored token = {$pwdResetToken}\n";
                     exit();
                 }
