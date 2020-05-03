@@ -120,9 +120,9 @@ class Member
     	else {
 	    	$stmt->bind_param("ss", $selector, $currentDate);
 		    $stmt->execute();
-		
-		    $row = $stmt->fetch_array(MYSQLI_ASSOC);
-		    if (!$stmt->fetch_array(MYSQLI_ASSOC)) {
+            $res = $stmt->get_result();
+		    $row = $res->fetch_array(MYSQLI_ASSOC);
+		    if (!$row) {
 			    echo "You need to re-submit your reset request.";
 			    exit();
 		    }
