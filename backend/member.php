@@ -129,7 +129,7 @@ class Member
 			    exit();
 		    }
             else {
-                $token = hex2bin($validator);
+                $token = $validator;
                 $tokenCheck = password_verify($token, $pwdResetToken);
                 
                 if($tokenCheck === false) {
