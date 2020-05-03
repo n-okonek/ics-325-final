@@ -71,6 +71,7 @@ class Page{
         <!-- import less js library -->
         <script src="//cdnjs.cloudflare.com/ajax/libs/less.js/3.9.0/less.min.js" crossorigin="anonymous"></script>
         <!-- import site scripts -->
+        <script src="scripts/display.js"></script>
       <?php
     }
 
@@ -247,7 +248,6 @@ class Page{
       ?>
         <script src="scripts/mm.js" async defer></script>
         <script src="scripts/validate.js" async defer></script>
-        <script src="scripts/display.js" async defer></script>
         </body>
       </html>
     <?php
