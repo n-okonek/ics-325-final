@@ -123,7 +123,7 @@ class Member
             $stmt->store_result();
             $numrows = $stmt->num_rows;
             $stmt->bind_result($pwdResetID, $pwdResetEmail, $pwdResetSelector, $pwdResetToken, $pwdResetExpires);
-            
+
 		    if ($numrows <= 0) {
 			    echo "couldn't pull result set";
 			    exit();
@@ -134,12 +134,12 @@ class Member
                 
                 if($tokenCheck === false) {
                     echo $numrows."<br />";
-                    print_r();
+                    print_r($stmt->bind_result($pwdResetID, $pwdResetEmail, $pwdResetSelector, $pwdResetToken, $pwdResetExpires));
                     $hash = password_hash($token, PASSWORD_DEFAULT);
-                    echo "failed token check<br />";
+                    echo "<br />failed token check<br />";
                     echo "token = {$token}<br />";
                     echo "hashed = {$hash}<br />";
-                    echo "stored token = {$pwdResetToken}\n";
+                    echo "stored hash = $pwdResetToken";
                     exit();
                 }
                 elseif ($tokenCheck === true) {
