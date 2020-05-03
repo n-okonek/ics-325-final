@@ -60,7 +60,7 @@ class Member
         $selector = bin2hex(random_bytes(8));
 	    $token = random_bytes(32);
 
-        $expires - date("U") + 1800;
+        $expires = date("U") + 1800;
 
         $sql = "DELETE FROM pwdreset WHERE pwdResetEmail=?;";
 	    $stmt = $this->db->prepare($sql);
@@ -90,6 +90,7 @@ class Member
     }
 
     public function SendResetMail($email, $selector, $token){
+        
         $to = $email;
         $url = $_SERVER['SERVER_NAME']."/reset.php?selector=" . $selector . "&validator=" . bin2hex($token);
 		$subject = 'Wanderlust Outpost Password Reset Request';
