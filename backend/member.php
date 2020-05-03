@@ -92,7 +92,7 @@ class Member
     public function SendResetMail($email, $selector, $token){
         
         $to = $email;
-        $url = $_SERVER['SERVER_NAME']."/reset.php?selector=" . $selector . "&validator=" . bin2hex($token);
+        $url = $_SERVER['SERVER_NAME']."/login.php?selector=" . $selector . "&validator=" . bin2hex($token);
 		$subject = 'Wanderlust Outpost Password Reset Request';
 		
 		$message  = '<p> We received a password reset request. The link to reset your password is below. If you did not make this request, you can ignore this email.</p>';

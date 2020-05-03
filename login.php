@@ -41,7 +41,7 @@ class LoginPage extends Page{
     
         <div class='container' id='submit'>
           <button type='submit' name="login" value="Login">Log-in</button>
-          <span class='pswd'><a href="#pw-reset" onclick="showForm('pw-reset')">Forget your password?</span> | <span class='createAccount'><a href='./register.php'>Create an account</a></span>
+          <span class='pswd'><a href="#reset" onclick="showForm('pw-reset')">Forget your password?</span> | <span class='createAccount'><a href='./register.php'>Create an account</a></span>
         </div>
       </form>
     </div>

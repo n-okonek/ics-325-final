@@ -11,7 +11,7 @@ if (isset($_POST["reset-request-submit"])) {
   
   if ($reset_request){
     $_SESSION['successMessage'] = "Please check your email for reset instructions.";
-    //header("Location: ../login.php");
+    header("Location: ../login.php");
   }
 		
 } elseif(isset($_POST['reset-password-submit'])){
