@@ -134,6 +134,7 @@ class Member
                 while($stmt->fetch()){
                     if($token == $pwdResetToken){
                         $tokenCheck = true;
+                        $tokenEmail = $pwdResetEmail;
                     }else{ $tokenCheck = false;}
                 }
                 
@@ -145,8 +146,6 @@ class Member
                 }
                 elseif ($tokenCheck === true) {
                     
-                    $tokenEmail = $pwdResetEmail;
-                    
                     $sql = "SELECT * FROM users WHERE Email = ?;";
                     $stmt =  $this->db->prepare($sql);
                     
@@ -156,7 +155,7 @@ class Member
                     } 
                     
                     else {
-                        $stmt->bind_params("s", $tokenEmail);
+                        $stmt->bind_param("s", $tokenEmail);
                         $stmt->execute();
                         $stmt->store_result();
                         $numrows = $stmt->num_rows;
