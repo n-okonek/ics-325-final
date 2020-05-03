@@ -130,7 +130,7 @@ class Member
 		    }
             else {
                 $tokenBin = hex2bin($validator);
-                $tokenCheck = password_varify($tokenBin, $pwdResetToken);
+                $tokenCheck = password_verify($tokenBin, $pwdResetToken);
                 
                 if($tokenCheck === false) {
                     echo "You need to re-submit your reset request.";
