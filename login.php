@@ -89,7 +89,6 @@ class LoginPage extends Page{
                 <button type="submit" name="reset-password-submit">Reset Password</button>
               </form>
             </div>
-            <script>showForm('new-pw');</script>
           <?php
         }
       }
