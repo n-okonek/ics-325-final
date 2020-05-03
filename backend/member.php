@@ -134,6 +134,8 @@ class Member
                 
                 if($tokenCheck === false) {
                     echo "failed token check";
+                    echo $tokenBin."\n";
+                    echo $pwdResetToken."\n";
                     exit();
                 }
                 elseif ($tokenCheck === true) {
