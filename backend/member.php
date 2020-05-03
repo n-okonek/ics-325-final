@@ -176,7 +176,7 @@ class Member
                             
                             else {
                                 $newPwdHash = md5($password);
-                                $stmt->bind_params("ss", $newPwdHash, $tokenEmail);
+                                $stmt->bind_param("ss", $newPwdHash, $tokenEmail);
                                 $stmt->execute();
                                 
                                 $sql = "DELETE FROM pwdreset WHERE pwdResetEmail=?;";
