@@ -120,15 +120,17 @@ class Member
     	else {
 	    	$stmt->bind_param("ss", $selector, $currentDate);
 		    $stmt->execute();
-            $res = $stmt->get_result();
-		    $row = $res->fetch_array(MYSQLI_ASSOC);
-		    if (!$row) {
+            $stmt->store_result();
+            $numrows = $stmt->num_rows;
+            $stmt->bind_result($pwdReestID, $pwdResetEmail, $pwdResetSelector, $pwdResetToken, $pwdResetExpires);
+		    
+		    if ($numrows <= 0) {
 			    echo "You need to re-submit your reset request.";
 			    exit();
 		    }
             else {
                 $tokenBin = hex2bin($validator);
-                $tokenCheck = password_varify($tokenBin, $row["pwdResetToken"]);
+                $tokenCheck = password_varify($tokenBin, $pwdResetToken);
                 
                 if($tokenCheck === false) {
                     echo "You need to re-submit your reset request.";
@@ -136,7 +138,7 @@ class Member
                 }
                 elseif ($tokenCheck === true) {
                     
-                    $tokenEmail = $row['pwdResetEmail'];
+                    $tokenEmail = $pwdResetEmail;
                     
                     $sql = "SELECT * FROM users WHERE Email = ?;";
                     $stmt =  $this->db->prepare($sql);
@@ -149,9 +151,11 @@ class Member
                     else {
                         $stmt->bind_params("s", $tokenEmail);
                         $stmt->execute();
-                        $results = $stmt->fetch_array(MYSQLI_ASSOC);
-                        
-                        if (!$row = $stmt->fetch_array(MYSQLI_ASSOC)) {
+                        $stmt->store_result();
+                        $numrows = $stmt->num_rows;
+                        $stmt->bind_result($User_ID, $Email, $FName, $LName, $Psword, $DOB, $Origin, $AccountCreated);
+
+                        if ($numrows <= 0) {
                             echo "There was an error!";
                             exit();
                         }
