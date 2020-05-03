@@ -118,7 +118,7 @@ class Member
             exit();
         } 
     	else {
-	    	$stmt->bind_params("ss", $selector, $currentDate);
+	    	$stmt->bind_param("ss", $selector, $currentDate);
 		    $stmt->execute($stmt, $currentDate);
 		
 		    $row = $stmt->fetch_array(MYSQLI_ASSOC);
