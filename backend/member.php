@@ -119,7 +119,7 @@ class Member
         } 
     	else {
 	    	$stmt->bind_param("ss", $selector, $currentDate);
-		    $stmt->execute($stmt, $currentDate);
+		    $stmt->execute();
 		
 		    $row = $stmt->fetch_array(MYSQLI_ASSOC);
 		    if (!$stmt->fetch_array(MYSQLI_ASSOC)) {
