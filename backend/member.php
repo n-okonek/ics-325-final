@@ -125,7 +125,7 @@ class Member
             $stmt->bind_result($pwdReestID, $pwdResetEmail, $pwdResetSelector, $pwdResetToken, $pwdResetExpires);
 		    
 		    if ($numrows <= 0) {
-			    echo "You need to re-submit your reset request.";
+			    echo "couldn't pull result set";
 			    exit();
 		    }
             else {
@@ -133,7 +133,7 @@ class Member
                 $tokenCheck = password_verify($tokenBin, $pwdResetToken);
                 
                 if($tokenCheck === false) {
-                    echo "You need to re-submit your reset request.";
+                    echo "failed token check";
                     exit();
                 }
                 elseif ($tokenCheck === true) {
@@ -156,7 +156,7 @@ class Member
                         $stmt->bind_result($User_ID, $Email, $FName, $LName, $Psword, $DOB, $Origin, $AccountCreated);
 
                         if ($numrows <= 0) {
-                            echo "There was an error!";
+                            echo "couldn't pull user set!";
                             exit();
                         }
                         
