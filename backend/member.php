@@ -188,7 +188,7 @@ class Member
                                 }
                                 
                                 else {
-                                    $stmt->bind_params("s", $tokenEmail);
+                                    $stmt->bind_param("s", $tokenEmail);
                                     $stmt->execute();
                                     return true;
                                 }
