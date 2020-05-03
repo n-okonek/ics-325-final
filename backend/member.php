@@ -131,11 +131,13 @@ class Member
             else {
                 $token = $validator;
                 
-                if($token == $pwdResetToken){
-                    $tokenCheck = true;
-                }else{ $tokenCheck = false;}
+                while($stmt->fetch()){
+                    if($token == $pwdResetToken){
+                        $tokenCheck = true;
+                    }else{ $tokenCheck = false;}
+                }
                 
-                //$tokenCheck = password_verify($token, $pwdResetToken);
+                    //$tokenCheck = password_verify($token, $pwdResetToken);
                 
                 if($tokenCheck === false) {
                     echo "failed token check";
