@@ -78,6 +78,7 @@ class LoginPage extends Page{
         echo "Could not validate your request!";
       } 
       else {
+        $_SESSION['errorMessage'] = "selector xdigit = ".ctype_xdigit($selector)." validator xdigit = ".ctype_xdigit($validator);
         if ( ctype_xdigit($selector) !== false && ctype_xdigit($validator) !== false ) {
           ?>
             <div class="new-pw">
