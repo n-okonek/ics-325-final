@@ -56,7 +56,7 @@ class Page{
         <!-- import font-awesome styles for stars -->
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">        
         <!-- import local styles-->
-        <link rel="stylesheet/less" type="text/css" href="less/styles.less" />
+        <link rel="stylesheet/css" type="text/css" href="css/styles.css" />
       <?php
     }
 

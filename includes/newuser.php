@@ -22,11 +22,11 @@ if ( !empty($_POST["register"]) ){
       header("Location: ../account.php");
     }elseif ($pw !== $pw2){
       $_SESSION["errorMessage"] = "Password fields do not match.";
-      //header("Location: ../register.php");
+      header("Location: ../register.php");
     }
     exit();
   }else{
     $_SESSION["errorMessage"] = "One or more fields are missing.";
-    //header("Location: ../register.php");
+    header("Location: ../register.php");
   }
 }
